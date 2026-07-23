@@ -57,7 +57,18 @@ public abstract class PlayerLocomState : IState
             var moveDir = (player.transform.right * input.x) + (player.transform.forward * input.y);
             return moveDir.normalized;
         }
-        
+
+        if (Camera.main)
+        {
+            Vector3 camForward = Camera.main.transform.forward;
+            camForward.y = 0f;
+
+            if (camForward.sqrMagnitude > 0.0001f)
+            {
+                return camForward.normalized;
+            }
+        }
+
         return player.transform.forward;
     }
 }

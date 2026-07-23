@@ -88,7 +88,7 @@ public class LocomotionController : Singleton<LocomotionController>
         
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(new Vector3(launchDir.x * bulletJumpForce, 
-            Math.Min(launchDir.y * bulletJumpForce, jumpSpeed*2), launchDir.z * bulletJumpForce), ForceMode.Impulse);
+            Math.Min(launchDir.y * bulletJumpForce, jumpSpeed*2), launchDir.z * bulletJumpForce), ForceMode.VelocityChange);
     }
 
     public void Dash()
