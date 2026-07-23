@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class DashBars : MonoBehaviour
 {
     [SerializeField] private Image[] _dashBars;
-
-
+    
     private void Start()
     {
         RefreshBars();
