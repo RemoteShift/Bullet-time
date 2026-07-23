@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody), typeof(GroundCheck))]
-public class LocomotionController : MonoBehaviour
+public class LocomotionController : Singleton<LocomotionController>
 {
     private PlayerLocomState currentState;
     public PlayerLocomState CurrentState => currentState;
@@ -31,25 +32,33 @@ public class LocomotionController : MonoBehaviour
     #endregion
     
     private int _dashCount = 0;
+    public int DashCount => _dashCount;
+    public UnityEvent OnDashCountChanged;
     private float _dashIncTimer = 0;
+
+    private void Awake()
+    {
+        _dashCount = maxDashCount;
+        _dashIncTimer = dashRecoveryDuration;
+    }
 
     private void Start()
     {
         ReturnToDefaultState();
-        _dashCount = maxDashCount;
-        _dashIncTimer = dashRecoveryDuration;
     }
 
     private void Update()
     {
         currentState?.Update();
         if(_dashCount < maxDashCount)
-            _dashIncTimer -= Time.deltaTime;
-        if (_dashIncTimer <= 0)
         {
-            if(_dashCount < maxDashCount)
+            _dashIncTimer -= Time.deltaTime;
+            if (_dashIncTimer <= 0)
+            {
                 _dashCount++;
-            _dashIncTimer = dashRecoveryDuration;
+                OnDashCountChanged.Invoke();
+                _dashIncTimer = dashRecoveryDuration;
+            }
         }
     }
 
@@ -88,6 +97,7 @@ public class LocomotionController : MonoBehaviour
         {
             SwitchState(new DashState(this, rb));
             _dashCount--;
+            OnDashCountChanged.Invoke();
         }
     }
     

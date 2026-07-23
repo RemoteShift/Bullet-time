@@ -16,6 +16,15 @@ public class DashState : PlayerLocomState
         _dashTimer = player.dashDuration;
     }
 
+    public override void Update()
+    {
+        if(player.input.SlidePressed && !player.GroundCheck.IsGrounded)
+        {
+            player.SwitchState(new GroundSlamState(player, Rb));
+            return;
+        }
+    }
+
     public override void FixedUpdate()
     {
         base.FixedUpdate();
