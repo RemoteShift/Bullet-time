@@ -1795,6 +1795,7 @@ GameObject:
   - component: {fileID: 1371888535}
   - component: {fileID: 1371888537}
   - component: {fileID: 1371888536}
+  - component: {fileID: 1371888538}
   m_Layer: 5
   m_Name: HandGun
   m_TagString: Untagged
@@ -1856,6 +1857,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371888534}
   m_CullTransparentMesh: 1
+--- !u!114 &1371888538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371888534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41ffcdc16063a644bf96347ceb784e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pistol
+  bulletCostPerShot: 1
+  fireRate: 0.5
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  gunImage: {fileID: 1371888536}
+  playerCamera: {fileID: 330585545}
+  damage: 10
+  range: 100
 --- !u!1 &1531327932
 GameObject:
   m_ObjectHideFlags: 0

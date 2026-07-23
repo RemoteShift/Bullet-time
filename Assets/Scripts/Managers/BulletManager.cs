@@ -38,5 +38,22 @@ public class BulletManager : Singleton<BulletManager>
                 OnBulletCountChanged?.Invoke(currentBullets);
             }
         }
+        else
+        {
+            Debug.Log("Out of bullets! YOU LOSE!");
+        }
+    }
+
+    public bool TryTakeBullets(int amount)
+    {
+        if (currentBullets < amount)
+        {
+            return false;
+        }
+
+        currentBullets -= amount;
+        OnBulletCountChangedDelta?.Invoke(-amount);
+        OnBulletCountChanged?.Invoke(currentBullets);
+        return true;
     }
 }
