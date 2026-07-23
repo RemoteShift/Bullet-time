@@ -185,7 +185,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -265,13 +265,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 396844742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &396844742
 Transform:
   m_ObjectHideFlags: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
   standingHeight: 2
   slidingHeight: 1
   standingCamY: 0
-  slideCamY: -0.2
+  slideCamY: -0.5
 --- !u!114 &872376048
 MonoBehaviour:
   m_ObjectHideFlags: 0
