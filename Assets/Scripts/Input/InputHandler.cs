@@ -8,12 +8,14 @@ public class InputHandler : Singleton<InputHandler>
     [FormerlySerializedAs("mouseInput")]
     [Header("Action References")] 
     [SerializeField] private InputActionReference MouseInput;
+    [SerializeField] private InputActionReference LeftClickInput;
     [SerializeField] private InputActionReference MoveInput;
     [SerializeField] private InputActionReference JumpInput;
     [SerializeField] private InputActionReference DashInput;
     [SerializeField] private InputActionReference SlideInput;
     
     public event Action<Vector2> OnMouseInputChanged;
+    public event Action<bool> OnLeftClickInput;
     
     public Vector2 moveInput { get; private set; }
     public bool JumpPressed { get; private set; }
@@ -24,6 +26,7 @@ public class InputHandler : Singleton<InputHandler>
     private void OnEnable()
     {
         MouseInput.action.Enable();
+        LeftClickInput.action.Enable();
         MoveInput.action.Enable();
         JumpInput.action.Enable();
         DashInput.action.Enable();
@@ -31,14 +34,19 @@ public class InputHandler : Singleton<InputHandler>
 
         MouseInput.action.performed += HandleMouseInput;
         MouseInput.action.canceled += HandleMouseInput;
+        LeftClickInput.action.performed += HandleLeftClickInput;
+        LeftClickInput.action.canceled += HandleLeftClickInput;
     }
 
     private void OnDisable()
     {
         MouseInput.action.performed -= HandleMouseInput;
         MouseInput.action.canceled -= HandleMouseInput;
+        LeftClickInput.action.performed -= HandleLeftClickInput;
+        LeftClickInput.action.canceled -= HandleLeftClickInput;
 
         MouseInput.action.Disable();
+        LeftClickInput.action.Disable();
         MoveInput.action.Disable();
         JumpInput.action.Disable();
         DashInput.action.Disable();
@@ -60,5 +68,10 @@ public class InputHandler : Singleton<InputHandler>
     private void HandleMouseInput(InputAction.CallbackContext context)
     {
         OnMouseInputChanged?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    private void HandleLeftClickInput(InputAction.CallbackContext context)
+    {
+        OnLeftClickInput?.Invoke(context.ReadValue<bool>());
     }
 }
