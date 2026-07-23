@@ -4,6 +4,8 @@ public class DashState : PlayerLocomState
 {
     private float _dashTimer;
     private Vector3 _dashDir;
+    
+    private Vector3 _initialVelocity;
 
     public DashState(LocomotionController playerLocomotion, Rigidbody rb) 
         : base(playerLocomotion, rb) { }
@@ -14,6 +16,7 @@ public class DashState : PlayerLocomState
 
         _dashDir = GetMoveDirection();
         _dashTimer = player.dashDuration;
+        _initialVelocity = Rb.linearVelocity;
     }
 
     public override void Update()
@@ -58,6 +61,6 @@ public class DashState : PlayerLocomState
     {
         base.Exit();
         // Zero out velocity so player doesn't keep sliding after hitting wall/ending dash
-        Rb.linearVelocity = Vector3.zero; 
+        Rb.linearVelocity = new Vector3(_initialVelocity.x, 0f, _initialVelocity.z);
     }
 }
