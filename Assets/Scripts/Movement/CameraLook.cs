@@ -2,22 +2,18 @@ using UnityEngine;
 
 public class CameraLook : MonoBehaviour
 {
-    [Header("Settings")]
     [SerializeField] private float mouseSensitivity = 1f;
-    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Transform yawPivot;
+    [SerializeField] private Transform pitchPivot;
 
-    private float _xRotation;
-    private Vector2 _mouseInput;
-    private Vector2 _lookInput;
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+    private float yaw;
+    private float pitch;
+    private Vector2 mouseInput;
 
     private void OnEnable()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         InputHandler.Instance.OnMouseInputChanged += HandleMouseInput;
     }
 
@@ -26,20 +22,18 @@ public class CameraLook : MonoBehaviour
         InputHandler.Instance.OnMouseInputChanged -= HandleMouseInput;
     }
 
-    private void HandleMouseInput(Vector2 mouseInput)
+    private void HandleMouseInput(Vector2 input)
     {
-        _mouseInput = mouseInput;
+        mouseInput = input;
     }
 
     private void Update()
     {
-        _lookInput.x = _mouseInput.x * mouseSensitivity;
-        _lookInput.y = _mouseInput.y * mouseSensitivity;
+        yaw += mouseInput.x * mouseSensitivity;
+        pitch -= mouseInput.y * mouseSensitivity;
+        pitch = Mathf.Clamp(pitch, -90f, 90f);
 
-        _xRotation -= _lookInput.y;
-        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-        
-        targetTransform.Rotate(Vector3.up * _lookInput.x);
+        yawPivot.localRotation = Quaternion.Euler(0f, yaw, 0f);
+        pitchPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 }

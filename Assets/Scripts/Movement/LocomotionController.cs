@@ -1,16 +1,148 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(GroundCheck))]
 public class LocomotionController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private PlayerLocomState currentState;
+    public PlayerLocomState CurrentState => currentState;
+    
+    [SerializeField] private string currentStateName;
+    
+    [SerializeField] private Rigidbody rb;
+    public GroundCheck GroundCheck;
+    
+    public InputHandler input => InputHandler.Instance;
+
+    #region Movement Settings
+
+    [Header("Movement Settings")]
+    public float moveSpeed = 1.0f;
+
+    public float jumpSpeed = 0.8f;
+    public float dashSpeed = 2.0f;
+    public float dashDuration = 0.5f;
+    public int maxDashCount = 3;
+    public float dashRecoveryDuration = 1f;
+    public float slideSpeed = 1.5f;
+    public float AirAcc = 0.1f;
+    public float slamSpeed = 1.5f;
+
+    #endregion
+    
+    private int _dashCount = 0;
+    private float _dashIncTimer = 0;
+
+    private void Start()
     {
-        
+        ReturnToDefaultState();
+        _dashCount = maxDashCount;
+        _dashIncTimer = dashRecoveryDuration;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        currentState?.Update();
+        if(_dashCount < maxDashCount)
+            _dashIncTimer -= Time.deltaTime;
+        if (_dashIncTimer <= 0)
+        {
+            if(_dashCount < maxDashCount)
+                _dashCount++;
+            _dashIncTimer = dashRecoveryDuration;
+        }
     }
+
+    private void FixedUpdate()
+    {
+        currentState?.FixedUpdate();
+    }
+
+    public void Jump()
+    {
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpSpeed, rb.linearVelocity.z);
+    }
+    
+    public void BulletJump(Vector3 aimDirection)
+    {
+        Vector3 launchDir = aimDirection.normalized;
+        
+        if (launchDir.y < 0.2f)
+        {
+            launchDir.y = 0.2f;
+            launchDir = launchDir.normalized;
+        }
+
+        var bulletJumpForce = jumpSpeed * 3f;
+        
+        transform.position += Vector3.up * 0.15f;
+        
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(new Vector3(launchDir.x * bulletJumpForce, 
+            Math.Min(launchDir.y * bulletJumpForce, jumpSpeed*2), launchDir.z * bulletJumpForce), ForceMode.Impulse);
+    }
+
+    public void Dash()
+    {
+        if (_dashCount > 0)
+        {
+            SwitchState(new DashState(this, rb));
+            _dashCount--;
+        }
+    }
+    
+    public void SwitchState(PlayerLocomState newState)
+    {
+        currentState?.Exit();
+        currentState = newState;
+        currentState.Enter();
+        
+        currentStateName = currentState != null ? currentState.GetType().Name : "None";
+    }
+    
+    public void ReturnToDefaultState()
+    {
+        if (GroundCheck.IsGrounded)
+        {
+            SwitchState(new GroundedState(this, rb));
+        }
+        else
+        {
+            SwitchState(new AirborneState(this, rb));
+        }
+    }
+
+    #region Height Shrinking (for sliding)
+
+    [Header("Height Shrinking (for sliding)")]
+    [Header("References")]
+    [SerializeField] private CapsuleCollider playerCollider;
+    [SerializeField] private Transform cameraHolderTransform;
+    
+    [Header("Height settings")]
+    [SerializeField] private float standingHeight = 2.0f;
+    [SerializeField] private float slidingHeight = 1.0f;
+    [SerializeField] private float standingCamY = 0.6f;
+    [SerializeField]  private float slideCamY = -0.2f;
+
+    public void SetSlideHeight()
+    {
+        playerCollider.height = slidingHeight;
+        
+        playerCollider.center = new Vector3(0f, -(standingHeight - slidingHeight) / 2f, 0f);
+
+        var camPos = cameraHolderTransform.localPosition;
+        cameraHolderTransform.localPosition = new Vector3(camPos.x, slideCamY, camPos.z);
+    }
+    
+    public void SetStandingHeight()
+    {
+        playerCollider.height = standingHeight;
+        playerCollider.center = Vector3.zero;
+        
+        var camPos = cameraHolderTransform.localPosition;
+        cameraHolderTransform.localPosition = new Vector3(camPos.x, standingCamY, camPos.z);
+    }
+
+    #endregion
 }
