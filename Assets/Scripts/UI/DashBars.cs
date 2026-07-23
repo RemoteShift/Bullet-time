@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class DashBars : MonoBehaviour
 {
-    [SerializeField] private Image[] _dashBars;
+    [SerializeField] private RawImage[] _dashBars;
     
     private void Start()
     {

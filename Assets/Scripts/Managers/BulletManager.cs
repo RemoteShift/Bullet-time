@@ -1,0 +1,42 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+public class BulletManager : Singleton<BulletManager>
+{
+    [SerializeField] private int initialBullets = 50;
+    
+    public int currentBullets;
+    public int currentBulletCap = 50;
+    private float _bulletTimer;
+    
+    public UnityEvent<int> OnBulletCountChangedDelta;
+    public UnityEvent<int> OnBulletCountChanged;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        currentBullets = currentBulletCap;
+        _bulletTimer = 0f;
+        BulletUI.Instance.PopulateBulletIcons(currentBulletCap);
+    }
+
+    private void FixedUpdate()
+    {
+        if (currentBullets > 0)
+        {
+            _bulletTimer += Clock.Instance.FixedDeltaTime;
+            if (_bulletTimer >= 1f)
+            {
+                _bulletTimer -= 1f;
+                currentBullets--;
+                OnBulletCountChangedDelta?.Invoke(-1);
+                OnBulletCountChanged?.Invoke(currentBullets);
+            }
+        }
+    }
+}
