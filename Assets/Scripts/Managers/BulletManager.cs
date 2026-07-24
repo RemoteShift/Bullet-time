@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -53,6 +54,15 @@ public class BulletManager : Singleton<BulletManager>
 
         currentBullets -= amount;
         OnBulletCountChangedDelta?.Invoke(-amount);
+        OnBulletCountChanged?.Invoke(currentBullets);
+        return true;
+    }
+
+    public bool ForceTakeBullets(int amount)
+    {
+        var initBullets = currentBullets;
+        currentBullets = Math.Min(currentBullets - amount, 0);
+        OnBulletCountChangedDelta?.Invoke(initBullets - currentBullets);
         OnBulletCountChanged?.Invoke(currentBullets);
         return true;
     }

@@ -18,7 +18,6 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     public float currentHealth;
     public float detectRange = 25f;
     public float attackCooldown = 1.5f;
-    public LayerMask hitLayers;
 
     [Header("Pathfinding Settings")] [SerializeField]
     private float repathInterval = 0.15f;
