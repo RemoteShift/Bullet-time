@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class BulletManager : Singleton<BulletManager>
 {
     [SerializeField] private int initialBullets = 50;
+    public bool bulletDecEnabled = true;
     
     public int currentBullets;
     public int currentBulletCap = 50;
@@ -30,6 +31,7 @@ public class BulletManager : Singleton<BulletManager>
     {
         if (currentBullets > 0)
         {
+            if (!bulletDecEnabled) return;
             _bulletTimer += Clock.Instance.FixedDeltaTime;
             if (_bulletTimer >= 1f)
             {

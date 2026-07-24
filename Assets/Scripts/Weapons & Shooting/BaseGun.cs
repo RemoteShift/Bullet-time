@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public abstract class BaseGun : MonoBehaviour
     
     [Header("2D UI References")]
     [SerializeField] protected RawImage gunImage;
-    // [SerializeField] protected Animator gunAnimator;
+    [SerializeField] protected Animator gunAnimator;
     
     [Header("3D Shooting References")]
     [SerializeField] protected Camera playerCamera;
@@ -79,7 +80,27 @@ public abstract class BaseGun : MonoBehaviour
         _nextFireTime = Time.time + fireRate;
 
         FirePattern();
+        PlayAnimationOnce("Shooting");
     }
     
     protected abstract void FirePattern();
+
+    private void PlayAnimationOnce(string stateName)
+    {
+        StartCoroutine(PlayAndReturnRoutine(stateName));
+    }
+    
+    private IEnumerator PlayAndReturnRoutine(string stateName)
+    {
+        gunAnimator.Play(stateName, 0, 0f);
+        
+        yield return null;
+        
+        var info = gunAnimator.GetCurrentAnimatorStateInfo(0);
+        var duration = info.length;
+        
+        yield return new WaitForSeconds(duration);
+        
+        gunAnimator.Play("Idle"); 
+    }
 }
