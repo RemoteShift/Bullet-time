@@ -15,6 +15,7 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
     [SerializeField] private float slamDamage = 10f;
     [SerializeField] private float slamRadius = 5f;
     [SerializeField] private LayerMask slamHitLayers;
+    [SerializeField] private float slamKnockbackDistance = 2f;
 
     private void OnEnable()
     {
@@ -78,6 +79,11 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
             {
                 damageable.TakeDamage(slamDamage);
                 damageable.Stun();
+
+                if (damageable is EnemyBrain enemyBrain)
+                {
+                    enemyBrain.KnockbackFrom(slamPoint.position, slamKnockbackDistance);
+                }
             }
         }
     }

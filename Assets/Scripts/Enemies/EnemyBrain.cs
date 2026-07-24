@@ -127,6 +127,30 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     {
         SwitchState(new EnemyStunState(this, stunDuration));
     }
+
+    public virtual void KnockbackFrom(Vector3 origin, float distance)
+    {
+        var awayFromOrigin = transform.position - origin;
+        awayFromOrigin.y = 0f;
+
+        if (awayFromOrigin.sqrMagnitude <= 0.0001f)
+        {
+            return;
+        }
+
+        var desiredPosition = transform.position + awayFromOrigin.normalized * distance;
+
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
+        {
+            if (NavMesh.SamplePosition(desiredPosition, out var navHit, distance, NavMesh.AllAreas))
+            {
+                agent.Warp(navHit.position);
+                return;
+            }
+        }
+
+        transform.position = desiredPosition;
+    }
     
     public virtual void Die()
     {

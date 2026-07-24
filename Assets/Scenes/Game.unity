@@ -1443,6 +1443,7 @@ MonoBehaviour:
   slamHitLayers:
     serializedVersion: 2
     m_Bits: 503
+  slamKnockbackDistance: 3
 --- !u!114 &872376050
 MonoBehaviour:
   m_ObjectHideFlags: 0
