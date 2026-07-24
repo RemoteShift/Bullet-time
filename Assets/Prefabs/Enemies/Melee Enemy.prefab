@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4975665013552100662}
   - component: {fileID: 5424090201239904301}
   - component: {fileID: 7445496011611773941}
+  - component: {fileID: 7571813987669428045}
   m_Layer: 0
   m_Name: Melee Enemy
   m_TagString: Untagged
@@ -137,3 +138,26 @@ MonoBehaviour:
   repathInterval: 0.15
   meleeRange: 2
   meleeDamage: 5
+--- !u!136 &7571813987669428045
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4455402780671826723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.4263256
+  m_Height: 14.299536
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.40977067, z: 0}

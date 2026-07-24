@@ -9,14 +9,7 @@ public class Pistol : BaseGun
     protected override void FirePattern()
     {
         var ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-        if (TryHitScan(ray, range, out var hit))
-        {
-            if (TryGetDamageable(hit.collider, out var target))
-            {
-                target.TakeDamage(damage);
-            }
-        }
+        DealInfinitePiercingDamage(ray, range, damage);
     }
 
     private void OnDrawGizmosSelected()

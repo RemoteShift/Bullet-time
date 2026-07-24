@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +40,28 @@ public abstract class BaseGun : MonoBehaviour
 
         damageable = null;
         return false;
+    }
+
+    protected void DealInfinitePiercingDamage(Ray ray, float range, float damage)
+    {
+        var layers = hitLayers.value == 0 ? ~0 : hitLayers.value;
+        var hits = Physics.RaycastAll(ray, range, layers, QueryTriggerInteraction.Ignore);
+        Array.Sort(hits, (left, right) => left.distance.CompareTo(right.distance));
+
+        var damagedTargets = new HashSet<IDamageable>();
+
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (!TryGetDamageable(hits[i].collider, out var target))
+            {
+                continue;
+            }
+
+            if (damagedTargets.Add(target))
+            {
+                target.TakeDamage(damage);
+            }
+        }
     }
 
     public void TryShoot()

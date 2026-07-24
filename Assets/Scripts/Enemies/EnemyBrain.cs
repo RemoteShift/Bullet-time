@@ -34,6 +34,7 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     {
         ReturnToDefaultState();
         agent.updateRotation = false;
+        target = LocomotionController.Instance.gameObject.transform;
     }
 
     protected void Update()
