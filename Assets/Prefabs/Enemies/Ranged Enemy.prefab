@@ -198,10 +198,9 @@ MonoBehaviour:
   maxHealth: 25
   currentHealth: 0
   detectRange: 40
-  attackCooldown: 1.5
+  attackCooldown: 2.5
   repathInterval: 0.15
   preferredShootingDistance: 20
-  attackCooldown: 2.5
   nextAttackTime: 0
   muzzlePoint: {fileID: 2118331362748560027}
   eyePoint: {fileID: 2287640880454257284}

@@ -133,10 +133,13 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
 
     private IEnumerator BlinkRed()
     {
-        var meshRend = GetComponent<Renderer>();
-        meshRend.material.color = Color.red;
+        var rend = GetComponent<Renderer>();
+        
+        var initColor = rend.material.color;
+        rend.material.color = Color.red;
         yield return new WaitForSeconds(0.25f);
-        meshRend.material.color = Color.white;
+
+        rend.material.color = !CanSeeTarget() ? Color.white : initColor;
     }
 
     #endregion

@@ -4,7 +4,6 @@ public class RangedEnemyBrain : EnemyBrain
 {
     [Header("Ranged Attack Settings")]
     public float preferredShootingDistance = 12f;
-    public float attackCooldown = 2.5f;
     public float nextAttackTime;
     
     [Header("Spawn Settings")]
@@ -52,7 +51,7 @@ public class RangedEnemyBrain : EnemyBrain
     {
         if (!target) return;
 
-        var spawnPos = muzzlePoint != null ? muzzlePoint.position : transform.position + Vector3.up * 1.5f;
+        var spawnPos = muzzlePoint ? muzzlePoint.position : transform.position + Vector3.up * 1.5f;
         
         // Aim toward player target center (with slight vertical offset for chest level)
         var targetCenter = target.position + Vector3.up * 0.5f;
@@ -70,7 +69,7 @@ public class RangedEnemyBrain : EnemyBrain
         // Green/Red Line of Sight line
         if (target)
         {
-            var origin = eyePoint != null ? eyePoint.position : transform.position + Vector3.up * 1.5f;
+            var origin = eyePoint ? eyePoint.position : transform.position + Vector3.up * 1.5f;
             Gizmos.color = HasLineOfSight() ? Color.green : Color.red;
             Gizmos.DrawLine(origin, target.position);
         }
