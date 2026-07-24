@@ -20,6 +20,10 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     public float attackCooldown = 1.5f;
     public LayerMask hitLayers;
 
+    [Header("Pathfinding Settings")] [SerializeField]
+    private float repathInterval = 0.15f;
+    private float _nextRepathTime;
+    
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
@@ -73,7 +77,12 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
         if (!target || !agent.isActiveAndEnabled) return;
 
         agent.isStopped = false;
-        agent.SetDestination(target.position);
+
+        if (Time.time >= _nextRepathTime)
+        {
+            _nextRepathTime = Time.time + repathInterval;
+            agent.SetDestination(target.position);
+        }
     }
 
     public virtual void StopPathfinding()

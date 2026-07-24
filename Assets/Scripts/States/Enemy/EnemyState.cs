@@ -13,7 +13,10 @@ public class EnemyState : IState
 
     public virtual void Exit() { }
 
-    public virtual void Update() { }
+    public virtual void Update()
+    {
+        enemy.LookAtTarget();
+    }
 
     public virtual void FixedUpdate() { }
 }
