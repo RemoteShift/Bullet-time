@@ -11,6 +11,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnPlayerHurt(damageInBullets);
     }
 
+    public void Stun()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void OnPlayerHurt(int bulletsLost)
     {
         Debug.Log($"Player hit! Lost {bulletsLost} bullets");

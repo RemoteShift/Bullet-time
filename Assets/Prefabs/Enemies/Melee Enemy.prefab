@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5424090201239904301}
   - component: {fileID: 7445496011611773941}
   - component: {fileID: 7571813987669428045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Melee Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +135,7 @@ MonoBehaviour:
   currentHealth: 0
   detectRange: 25
   attackCooldown: 1.5
+  stunDuration: 1
   repathInterval: 0.15
   meleeRange: 2
   meleeDamage: 5

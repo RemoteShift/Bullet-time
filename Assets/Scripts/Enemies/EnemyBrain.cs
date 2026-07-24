@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,6 +19,7 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     public float currentHealth;
     public float detectRange = 25f;
     public float attackCooldown = 1.5f;
+    public float stunDuration = 0.5f;
 
     [Header("Pathfinding Settings")] [SerializeField]
     private float repathInterval = 0.15f;
@@ -123,6 +123,11 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
         }
     }
 
+    public virtual void Stun()
+    {
+        SwitchState(new EnemyStunState(this, stunDuration));
+    }
+    
     public virtual void Die()
     {
         Destroy(gameObject);

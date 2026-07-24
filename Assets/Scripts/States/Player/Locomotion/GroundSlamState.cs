@@ -4,13 +4,19 @@ public class GroundSlamState : PlayerLocomState
 {
     public GroundSlamState(LocomotionController locomotionController, Rigidbody rb) : base(locomotionController, rb) { }
 
+    public override void Enter()
+    {
+        base.Enter();
+        Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), true);
+    }
+
     public override void Update()
     {
         base.Update();
-
+        
         if (player.GroundCheck.IsGrounded)
         {
-            // OnSlamImpact();
+            OnSlamImpact();
             player.SwitchState(new GroundedState(player, Rb));
             return;
         }
@@ -21,9 +27,15 @@ public class GroundSlamState : PlayerLocomState
         base.FixedUpdate();
         Rb.linearVelocity = new Vector3(0f, -player.slamSpeed, 0f);
     }
+
+    public override void Exit()
+    {
+        Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), false);
+    }
     
-    /*private void OnSlamImpact()
-     {
-        // Add necessary effects here
-     }*/
+    private void OnSlamImpact()
+    {
+        // Effects
+        PlayerDmgDealer.Instance.DealSlamDamage();
+    }
 }

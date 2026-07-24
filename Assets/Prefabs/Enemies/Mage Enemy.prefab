@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7926390240697491830}
   - component: {fileID: 3317900204862975083}
   - component: {fileID: 2913110144897882196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mage Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,6 +137,7 @@ MonoBehaviour:
   currentHealth: 0
   detectRange: 25
   attackCooldown: 1.5
+  stunDuration: 0.5
   repathInterval: 0.15
   bulletDecRate: 1
   renderer: {fileID: 3751983142856628952}

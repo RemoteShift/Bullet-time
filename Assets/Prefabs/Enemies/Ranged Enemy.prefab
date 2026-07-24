@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6513877873303850387}
   - component: {fileID: 5780121912073481269}
   - component: {fileID: 6524658230183711168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ranged Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,6 +199,7 @@ MonoBehaviour:
   currentHealth: 0
   detectRange: 40
   attackCooldown: 2.5
+  stunDuration: 0.5
   repathInterval: 0.15
   preferredShootingDistance: 20
   nextAttackTime: 0
