@@ -72,6 +72,13 @@ public class InputHandler : Singleton<InputHandler>
 
     private void HandleLeftClickInput(InputAction.CallbackContext context)
     {
-        OnLeftClickInput?.Invoke(context.ReadValue<bool>());
+        if(context.performed)
+        {
+            OnLeftClickInput?.Invoke(true);
+        }
+        else if(context.canceled)
+        {
+            OnLeftClickInput?.Invoke(false);
+        }
     }
 }
