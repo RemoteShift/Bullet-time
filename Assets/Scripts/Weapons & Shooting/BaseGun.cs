@@ -6,7 +6,6 @@ public abstract class BaseGun : MonoBehaviour
     [Header("Base gun settings")]
     [SerializeField] protected int bulletCostPerShot = 1;
     [SerializeField] protected float fireRate = 0.5f;
-    [SerializeField] protected LayerMask hitLayers;
     
     [Header("2D UI References")]
     [SerializeField] protected RawImage gunImage;

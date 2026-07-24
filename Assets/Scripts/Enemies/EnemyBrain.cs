@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,11 +32,6 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        if (Camera.main)
-        {
-            target = Camera.main.transform;
-        }
-
         ReturnToDefaultState();
     }
 
@@ -89,6 +86,8 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
         if (agent.isActiveAndEnabled)
         {
             agent.isStopped = true;
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
         }
     }
 
@@ -111,7 +110,11 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
 
     public virtual void TakeDamage(float damage)
     {
+        Debug.Log("Enemy took damage: " + damage);
         currentHealth -= damage;
+
+        StartCoroutine(BlinkRed());
+        
         if (currentHealth <= 0f)
         {
             Die();
@@ -123,5 +126,27 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
     
+    #endregion
+
+    #region Coroutines
+
+    private IEnumerator BlinkRed()
+    {
+        var meshRend = GetComponent<Renderer>();
+        meshRend.material.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        meshRend.material.color = Color.white;
+    }
+
+    #endregion
+    
+    #region Gizmos
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+    }
+
     #endregion
 }

@@ -16,12 +16,22 @@ public class MeleeEnemyBrain : EnemyBrain
     {
         if (!target) return;
         
-        if(Vector3.Distance(transform.position, target.position) <= meleeRange)
+        if (target.position.y > transform.position.y) return;
+
+        if (Vector3.Distance(transform.position, target.position) <= meleeRange)
         {
             if (target.TryGetComponent<IDamageable>(out var damageable))
             {
                 damageable.TakeDamage(meleeDamage);
             }
         }
+    }
+
+    protected override void OnDrawGizmosSelected()
+    {
+        base.OnDrawGizmosSelected();
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, meleeRange);
     }
 }

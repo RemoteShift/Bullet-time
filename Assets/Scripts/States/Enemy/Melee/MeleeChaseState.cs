@@ -21,5 +21,9 @@ public class MeleeChaseState : EnemyState
         {
             _meleeBrain.SwitchState(new MeleeAttackState(_meleeBrain));
         }
+        else if (dist > _meleeBrain.detectRange)
+        {
+            _meleeBrain.ReturnToDefaultState();
+        }
     }
 }

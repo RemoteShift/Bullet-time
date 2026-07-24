@@ -10,12 +10,18 @@ public class Pistol : BaseGun
     {
         var ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        if (Physics.Raycast(ray, out RaycastHit hit, range, hitLayers))
+        if (Physics.Raycast(ray, out var hit, range))
         {
             if(hit.collider.TryGetComponent<IDamageable>(out var target))
             {
                 target.TakeDamage(damage);
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * range);
     }
 }

@@ -14,7 +14,7 @@ public class MeleeAttackState : EnemyState
     {
         base.Enter();
         _meleeBrain.StopPathfinding();
-
+        
         _nextAttackTime = Time.time; // instantly attack
     }
 

@@ -21,7 +21,7 @@ public class Shotgun : BaseGun
             targetDirection += playerCamera.transform.up * randomSpread.y;
             targetDirection.Normalize();
 
-            if (Physics.Raycast(rayOrigin, targetDirection, out var hit, range, hitLayers))
+            if (Physics.Raycast(rayOrigin, targetDirection, out var hit, range))
             {
                 if (hit.collider.TryGetComponent<IDamageable>(out var target))
                 {

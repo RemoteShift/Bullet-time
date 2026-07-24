@@ -61,8 +61,8 @@ public class BulletManager : Singleton<BulletManager>
     public bool ForceTakeBullets(int amount)
     {
         var initBullets = currentBullets;
-        currentBullets = Math.Min(currentBullets - amount, 0);
-        OnBulletCountChangedDelta?.Invoke(initBullets - currentBullets);
+        currentBullets = Math.Max(currentBullets - amount, 0);
+        OnBulletCountChangedDelta?.Invoke(-(initBullets - currentBullets));
         OnBulletCountChanged?.Invoke(currentBullets);
         return true;
     }
