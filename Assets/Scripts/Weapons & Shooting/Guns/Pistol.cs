@@ -10,9 +10,9 @@ public class Pistol : BaseGun
     {
         var ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        if (Physics.Raycast(ray, out var hit, range))
+        if (TryHitScan(ray, range, out var hit))
         {
-            if(hit.collider.TryGetComponent<IDamageable>(out var target))
+            if (TryGetDamageable(hit.collider, out var target))
             {
                 target.TakeDamage(damage);
             }

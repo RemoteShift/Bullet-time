@@ -10,7 +10,7 @@ public class Shotgun : BaseGun
 
     protected override void FirePattern()
     {
-        var rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        var ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
         for (var i = 0; i < pelletCount; i++)
         {
@@ -21,9 +21,11 @@ public class Shotgun : BaseGun
             targetDirection += playerCamera.transform.up * randomSpread.y;
             targetDirection.Normalize();
 
-            if (Physics.Raycast(rayOrigin, targetDirection, out var hit, range))
+            var spreadRay = new Ray(ray.origin, targetDirection);
+
+            if (TryHitScan(spreadRay, range, out var hit))
             {
-                if (hit.collider.TryGetComponent<IDamageable>(out var target))
+                if (TryGetDamageable(hit.collider, out var target))
                 {
                     target.TakeDamage(damagePerPellet);
                 }
