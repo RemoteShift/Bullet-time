@@ -33,6 +33,7 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     protected virtual void Start()
     {
         ReturnToDefaultState();
+        agent.updateRotation = false;
     }
 
     protected void Update()
