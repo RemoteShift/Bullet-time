@@ -106,7 +106,7 @@ public class PlayerData : Singleton<PlayerData>
                 isDoublePistolFireRate = false;
                 break;
             case "shotgun":
-                // Never Unapply anyways
+                // Never Unapply anyway
                 break;
             case "2x_shotgun_fire_rate":
                 isDoubleShotgunFireRate = false;

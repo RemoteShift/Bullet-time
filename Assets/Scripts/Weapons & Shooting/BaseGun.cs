@@ -60,7 +60,7 @@ public abstract class BaseGun : MonoBehaviour
 
             if (damagedTargets.Add(target))
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(PlayerData.Instance.isDoubleDmgMul ? damage * 2f : damage);
             }
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f747f2074a69aab44a73d9865dbb23e0, type: 3}
   m_Name: Pistol 2x Fire Rate
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemSO
-  itemID: pistol_2x_fire_rate
+  itemID: 2x_pistol_fire_rate
   itemName: Pistol 2X Fire Rate
   itemType: 1
   price: 20
