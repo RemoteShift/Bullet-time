@@ -17,6 +17,8 @@ public class DashState : PlayerLocomState
         _dashDir = GetMoveDirection();
         _dashTimer = player.dashDuration;
         _initialVelocity = Rb.linearVelocity;
+        
+        Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), true);
     }
 
     public override void Update()
@@ -62,5 +64,7 @@ public class DashState : PlayerLocomState
         base.Exit();
         // Zero out velocity so player doesn't keep sliding after hitting wall/ending dash
         Rb.linearVelocity = new Vector3(_initialVelocity.x, 0f, _initialVelocity.z);
+        
+        Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), false);
     }
 }

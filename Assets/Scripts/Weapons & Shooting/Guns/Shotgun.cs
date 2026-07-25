@@ -5,7 +5,7 @@ public class Shotgun : BaseGun
     [Header("Shotgun Settings")]
     [SerializeField] private int pelletCount = 8;
     [SerializeField] private float damagePerPellet = 10f;
-    [SerializeField] private float range = 30f;
+    [SerializeField] private float range = 15f;
     [SerializeField] private float spreadAngle = 6f;
 
     protected override void FirePattern()
