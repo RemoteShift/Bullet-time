@@ -10,7 +10,7 @@ public class LocomotionController : Singleton<LocomotionController>
     
     [SerializeField] private string currentStateName;
     
-    [SerializeField] private Rigidbody rb;
+    public Rigidbody rb;
     public GroundCheck GroundCheck;
     
     public InputHandler input => InputHandler.Instance;
@@ -67,6 +67,22 @@ public class LocomotionController : Singleton<LocomotionController>
     private void FixedUpdate()
     {
         currentState?.FixedUpdate();
+    }
+
+    public void ResetPositionRotation(Vector3 startPosition)
+    {
+        rb.position = startPosition;
+        rb.rotation = Quaternion.identity;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.Sleep();
+
+        transform.SetPositionAndRotation(startPosition, Quaternion.identity);
+        
+        CameraLook.Instance.transform.localRotation = Quaternion.identity;
+
+        GroundCheck.SetGroundedState(true);
+        ReturnToDefaultState();
     }
 
     public void Jump()

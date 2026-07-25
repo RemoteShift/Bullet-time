@@ -12,6 +12,12 @@ public class GroundCheck : MonoBehaviour
 
     private bool evaluatedThisFrame;
 
+    public void SetGroundedState(bool grounded)
+    {
+        isGrounded = grounded;
+        evaluatedThisFrame = true;
+    }
+
     private void FixedUpdate()
     {
         // Reset grounded status at the start of every physics tick.

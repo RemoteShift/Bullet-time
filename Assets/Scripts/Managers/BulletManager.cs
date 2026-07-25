@@ -20,9 +20,9 @@ public class BulletManager : Singleton<BulletManager>
         Initialize();
     }
 
-    public void Initialize()
+    public void Initialize(int extraBullets = 0)
     {
-        currentBullets = currentBulletCap;
+        currentBullets = currentBulletCap + extraBullets;
         _bulletTimer = 0f;
         BulletUI.Instance.PopulateBulletIcons(currentBulletCap);
     }

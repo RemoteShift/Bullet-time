@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraLook : MonoBehaviour
+public class CameraLook : Singleton<CameraLook>
 {
     [SerializeField] private float mouseSensitivity = 1f;
     [SerializeField] private Transform yawPivot;
