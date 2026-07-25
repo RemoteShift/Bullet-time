@@ -19,11 +19,6 @@ public class SlideState : PlayerLocomState
     {
         base.Update();
         
-        if (!player.GroundCheck.IsGrounded)
-        {
-            player.SwitchState(new AirborneState(player, Rb));
-            return;
-        }
         
         if(player.input.JumpPressed)
         {

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GroundedState : PlayerLocomState
 {
+    private const float GroundSnapForce = 30f;
+
     public GroundedState(LocomotionController player, Rigidbody rb) : base(player, rb)
     { }
     
@@ -17,6 +19,7 @@ public class GroundedState : PlayerLocomState
         if(player.input.JumpPressed)
         {
             player.Jump();
+            player.SwitchState(new AirborneState(player, Rb));
             return;
         }
 
@@ -32,14 +35,25 @@ public class GroundedState : PlayerLocomState
         base.FixedUpdate();
         
         var dir = GetCameraRelativeMoveDirection();
+        var groundNormal = player.GroundCheck.IsGrounded ? player.GroundCheck.GroundNormal : Vector3.up;
+        var moveDirection = Vector3.ProjectOnPlane(dir, groundNormal);
+        var currentVelocity = Rb.linearVelocity;
+        var verticalVelocity = Vector3.Project(currentVelocity, groundNormal);
         
-        if (dir.sqrMagnitude > 0.01f)
+        if (moveDirection.sqrMagnitude > 0.01f)
         {
-            Rb.linearVelocity = new Vector3(dir.x * player.moveSpeed, Rb.linearVelocity.y, dir.z * player.moveSpeed);
+            moveDirection.Normalize();
+            Rb.linearVelocity = moveDirection * player.moveSpeed + verticalVelocity;
         }
         else
         {
-            Rb.linearVelocity = new Vector3(0f, Rb.linearVelocity.y, 0f);
+            var groundedVelocity = Vector3.ProjectOnPlane(currentVelocity, groundNormal) * 0.15f;
+            Rb.linearVelocity = groundedVelocity + verticalVelocity;
+        }
+
+        if (player.GroundCheck.IsGrounded && Vector3.Dot(currentVelocity, groundNormal) <= 0f)
+        {
+            Rb.AddForce(-groundNormal * GroundSnapForce, ForceMode.Acceleration);
         }
     }
 }
