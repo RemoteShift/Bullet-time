@@ -28,12 +28,14 @@ public class LocomotionController : Singleton<LocomotionController>
     public float slideSpeed = 1.5f;
     public float AirAcc = 0.1f;
     public float slamSpeed = 1.5f;
+    [Tooltip("The minimum time in seconds that the player must be in the air before a slam attack can deal damage.")]
+    public float slamAttackThreshhold = 0.5f;
 
     #endregion
     
     private int _dashCount = 0;
     public int DashCount => _dashCount;
-    public UnityEvent OnDashCountChanged;
+    [HideInInspector] public UnityEvent OnDashCountChanged;
     private float _dashIncTimer = 0;
 
     private void Awake()

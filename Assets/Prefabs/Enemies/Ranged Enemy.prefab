@@ -211,6 +211,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
+  _bulletPickupPrefab: {fileID: 2223822097512196302, guid: c9d5f9caaa78ef04f983f19fd333dfcf, type: 3}
 --- !u!136 &6524658230183711168
 CapsuleCollider:
   m_ObjectHideFlags: 0

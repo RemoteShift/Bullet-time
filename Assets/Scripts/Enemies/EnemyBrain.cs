@@ -169,7 +169,7 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
         rend.material.color = Color.red;
         yield return new WaitForSeconds(0.25f);
 
-        rend.material.color = !CanSeeTarget() ? Color.white : initColor;
+        rend.material.color = !CanSeeTarget() || currentState is EnemyStunState ? Color.white : initColor;
     }
 
     #endregion

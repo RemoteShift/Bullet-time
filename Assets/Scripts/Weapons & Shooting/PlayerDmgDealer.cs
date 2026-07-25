@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,8 +76,8 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
 
             if (damagedTargets.Add(damageable))
             {
-                damageable.TakeDamage(slamDamage);
                 damageable.Stun();
+                damageable.TakeDamage(slamDamage);
 
                 if (damageable is EnemyBrain enemyBrain)
                 {

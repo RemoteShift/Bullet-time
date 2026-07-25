@@ -70,6 +70,11 @@ public class BulletUI : Singleton<BulletUI>
     {
         if (deltaBullets < 0)
         {
+            if(BulletManager.Instance.currentBullets >= BulletManager.Instance.currentBulletCap)
+            {
+                return;
+            }
+            
             for(var i = 0; i < Mathf.Abs(deltaBullets); i++)
             {
                 var index = _lastBulletIndex - i;

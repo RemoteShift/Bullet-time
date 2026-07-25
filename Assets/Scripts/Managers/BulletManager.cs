@@ -68,4 +68,12 @@ public class BulletManager : Singleton<BulletManager>
         OnBulletCountChanged?.Invoke(currentBullets);
         return true;
     }
+
+    public void ForceAddBullets(int amount)
+    {
+        currentBullets += amount;
+        OnBulletCountChanged?.Invoke(currentBullets);
+        OnBulletCountChangedDelta?.Invoke(amount);
+        return;
+    }
 }

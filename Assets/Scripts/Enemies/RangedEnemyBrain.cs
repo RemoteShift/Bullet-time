@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RangedEnemyBrain : EnemyBrain
@@ -14,6 +15,9 @@ public class RangedEnemyBrain : EnemyBrain
     [SerializeField] private LayerMask obstacleLayers;
     [SerializeField] private LayerMask playerLayer;
 
+    [Header("Other Settings")]
+    [SerializeField] private GameObject _bulletPickupPrefab;
+    
     public override void ReturnToDefaultState()
     {
         SwitchState(new EnemyIdleState(this, new RangedChaseState(this)));
@@ -77,5 +81,14 @@ public class RangedEnemyBrain : EnemyBrain
         // Blue Wire Sphere showing preferred shooting distance stopping point
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, preferredShootingDistance);
+    }
+
+    private void OnDestroy()
+    {
+        if (_bulletPickupPrefab)
+        {
+            var pos = new Vector3(transform.position.x, transform.position.y - 0.86f, transform.position.z);
+            Instantiate(_bulletPickupPrefab, pos, Quaternion.identity);
+        }
     }
 }

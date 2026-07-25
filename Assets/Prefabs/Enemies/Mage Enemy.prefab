@@ -137,7 +137,7 @@ MonoBehaviour:
   currentHealth: 0
   detectRange: 25
   attackCooldown: 1.5
-  stunDuration: 0.5
+  stunDuration: 2
   repathInterval: 0.15
   bulletDecRate: 1
   renderer: {fileID: 3751983142856628952}

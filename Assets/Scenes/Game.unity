@@ -205,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3873647306721948778, guid: a26103db9573d5c40a8051a25218319a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1000,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1043,7 +1043,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 489, y: 100}
+  m_SizeDelta: {x: 489, y: 111.0638}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &586350902
 MonoBehaviour:
@@ -1400,6 +1400,7 @@ MonoBehaviour:
   slideSpeed: 15
   AirAcc: 50
   slamSpeed: 40
+  slamAttackThreshhold: 0.1
   OnDashCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1781,6 +1782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1819,10 +1824,10 @@ RectTransform:
   - {fileID: 2024629098}
   m_Father: {fileID: 586350901}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -57.5, y: -22.2}
-  m_SizeDelta: {x: 115, y: 53}
+  m_AnchoredPosition: {x: -57.5, y: -22.199951}
+  m_SizeDelta: {x: 115, y: -47}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1073614148
 MonoBehaviour:
@@ -1871,11 +1876,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.63
+  m_fontSize: 54.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 58.63
+  m_fontSizeMin: 21.7
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -2026,7 +2031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2131,7 +2136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862582040935416138, guid: eb62271073df5ca42a8c62ef904b7075, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.4
+      value: 3.06
       objectReference: {fileID: 0}
     - target: {fileID: 862582040935416138, guid: eb62271073df5ca42a8c62ef904b7075, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2220,7 +2225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2646,7 +2651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2951,7 +2956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3275,7 +3280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455402780671826723, guid: 289bcb09b1e0d9d41bc6427cd1b8318a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3439,8 +3444,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 110, y: 20.2873}
+  m_AnchoredPosition: {x: 0, y: 10.449951}
+  m_SizeDelta: {x: 115, y: 31.2873}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2024629099
 MonoBehaviour:
@@ -3489,7 +3494,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 25.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

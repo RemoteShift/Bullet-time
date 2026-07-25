@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class GroundSlamState : PlayerLocomState
 {
+    private float _startTime;
+    
     public GroundSlamState(LocomotionController locomotionController, Rigidbody rb) : base(locomotionController, rb) { }
 
     public override void Enter()
     {
         base.Enter();
+        _startTime = Time.time;
         Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), true);
     }
 
@@ -35,7 +38,12 @@ public class GroundSlamState : PlayerLocomState
     
     private void OnSlamImpact()
     {
-        // Effects
+        if (!(Time.time - _startTime > player.slamAttackThreshhold))
+        {
+            return;
+        }
+
+        // player.PlaySlamImpactEffects();
         PlayerDmgDealer.Instance.DealSlamDamage();
     }
 }
