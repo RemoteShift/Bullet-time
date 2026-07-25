@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Shotgun : BaseGun
 {
@@ -67,5 +69,11 @@ public class Shotgun : BaseGun
         yield return new WaitForSeconds(duration);
         
         gunAnimator.Play("Idle"); 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * range);
     }
 }

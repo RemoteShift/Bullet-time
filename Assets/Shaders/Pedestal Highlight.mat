@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pedestal Highlight
+  m_Shader: {fileID: 4800000, guid: d91f067ae9b6b3a44a7346fd1bee03fd, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _AnimationSlider: 0
+    - _AnimationSpeed: 3
+    - _ColorEnd: 0
+    - _ColorStart: 0
+    - _FadeEnd: 1
+    - _FadeExponent: 0.26
+    - _FadeStart: 0
+    - _WaveFrequency: 3
+    - _WaveSpeed: 2
+    m_Colors:
+    - _Color: {r: 0.066070415, g: 1, b: 0, a: 1}
+    - _ColorA: {r: 0.14285529, g: 1, b: 0, a: 1}
+    - _ColorB: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

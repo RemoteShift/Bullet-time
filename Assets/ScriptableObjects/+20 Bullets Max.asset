@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f747f2074a69aab44a73d9865dbb23e0, type: 3}
   m_Name: +20 Bullets Max
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemSO
-  itemID: p20_bullets_max
-  itemName: +20 Bullets Max
+  itemID: p20_bullets_per_round
+  itemName: +20 Bullets Per Round
   itemType: 1
   price: 30
   displayPrefab: {fileID: 0}

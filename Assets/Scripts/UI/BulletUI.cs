@@ -14,7 +14,7 @@ public class BulletUI : Singleton<BulletUI>
     [FormerlySerializedAs("_bulletIcons")] [SerializeField] private List<GameObject> bulletIcons;
     [FormerlySerializedAs("_bulletIconsContentTransform")] [SerializeField] private Transform bulletIconsContentTransform;
 
-    private int _lastBulletIndex;
+    [SerializeField] private int lastBulletIndex;
 
     private void OnEnable()
     {
@@ -56,7 +56,7 @@ public class BulletUI : Singleton<BulletUI>
             bulletIcons.Add(icon);
         }
         
-        _lastBulletIndex = bulletCap - 1;
+        lastBulletIndex = bulletCap - 1;
     }
 
     private void ClearIcons()
@@ -70,30 +70,43 @@ public class BulletUI : Singleton<BulletUI>
     
     public void UpdateBulletIcons(int deltaBullets)
     {
+        var initLastBulletIndex = lastBulletIndex;
         if (deltaBullets < 0)
         {
-            if(BulletManager.Instance.currentBullets >= BulletManager.Instance.currentBulletCap)
-            {
-                return;
-            }
+            var skippedBullets = 0;
             
-            for(var i = 0; i < Mathf.Abs(deltaBullets); i++)
+            for(var i = 0; i < Math.Abs(deltaBullets); i++)
             {
-                var index = _lastBulletIndex - i;
+                if (BulletManager.Instance.currentBullets + Math.Abs(deltaBullets) - i >
+                    BulletManager.Instance.currentBulletCap)
+                {
+                    skippedBullets++;
+                    continue;
+                }
+                
+                var index = lastBulletIndex - (i - skippedBullets);
                 if (index < 0 || index >= bulletIcons.Count) continue;
-                bulletIcons[_lastBulletIndex - i].GetComponent<RawImage>().color = Color.black;
+                bulletIcons[index].GetComponent<RawImage>().color = Color.black;
+                initLastBulletIndex--;
             }
-            _lastBulletIndex = Math.Clamp(_lastBulletIndex + deltaBullets, 0, bulletIcons.Count - 1);
+
+            lastBulletIndex = initLastBulletIndex;
         }
         else if (deltaBullets > 0)
         {
             for (var i = 0; i < deltaBullets; i++)
             {
-                var index =  _lastBulletIndex + i;
+                var index =  lastBulletIndex + i;
                 if (index < 0 || index >= bulletIcons.Count) continue;
-                bulletIcons[_lastBulletIndex + i].GetComponent<RawImage>().color = Color.white;
+                bulletIcons[index].GetComponent<RawImage>().color = Color.white;
+
+                if (BulletManager.Instance.currentBullets - deltaBullets + i < BulletManager.Instance.currentBulletCap)
+                {
+                    initLastBulletIndex++;
+                }
             }
-            _lastBulletIndex = Math.Clamp(_lastBulletIndex + deltaBullets, 0, bulletIcons.Count - 1);
+
+            lastBulletIndex = initLastBulletIndex;
         }
     }
 }

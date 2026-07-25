@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +7,15 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
     [Header("Gun Settings")]
     [SerializeField] private BaseGun currentGun;
     public bool canShoot;
-    [SerializeField] private bool isAutomatic = true;
+    public bool isAutomatic = true;
 
     private bool _isShooting;
+    
+    [Header("Guns")]
+    [SerializeField] private List<BaseGun> _gunInventory;
+    [SerializeField] private Shotgun shotgun;
+    
+    private int _currentGunIndex;
     
     [Header("Slam Settings")]
     [SerializeField] private Transform slamPoint;
@@ -20,11 +27,13 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
     private void OnEnable()
     {
         InputHandler.Instance.OnLeftClickInput += HandleShootingInput;
+        InputHandler.Instance.OnScrollWheelRoll += EquipGun;
     }
 
     private void OnDisable()
     {
         InputHandler.Instance.OnLeftClickInput -= HandleShootingInput;
+        InputHandler.Instance.OnScrollWheelRoll -= EquipGun;
     }
 
     private void Update()
@@ -43,16 +52,24 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
         }
     }
 
-    public void EquipGun(BaseGun newGun, bool automaticSetting)
+    public void EquipGun(int scrollDir)
     {
+        _currentGunIndex = (_currentGunIndex + scrollDir) %  _gunInventory.Count;
+        var newGun = _gunInventory[Math.Abs(_currentGunIndex)];
+
         if (currentGun)
         {
             currentGun.gameObject.SetActive(false);
         }
 
         currentGun = newGun;
-        isAutomatic = automaticSetting;
         currentGun.gameObject.SetActive(true);
+    }
+
+    public void AddShotgun()
+    {
+        if(!_gunInventory.Contains(shotgun))
+            _gunInventory.Add(shotgun);
     }
 
     public void ForceStopShooting()

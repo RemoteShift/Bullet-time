@@ -26,6 +26,7 @@ public class BulletManager : Singleton<BulletManager>
 
     public void InitializeNextStage(int bulletCap)
     {
+        PlayerData.Instance.ClearNonPersistents();
         currentBulletCap = bulletCap;
         currentBullets = currentBulletCap;
         _bulletTimer = 0f;

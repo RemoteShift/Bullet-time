@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Pistol Piercing
   itemType: 1
   price: 15
-  displayPrefab: {fileID: 0}
+  displayPrefab: {fileID: 1341958207860167998, guid: 7a2a1df1801667c48b6de4a67c70cf7b, type: 3}

@@ -45,13 +45,19 @@ public class PlayerData : Singleton<PlayerData>
         return true;
     }
 
-    public void ClearAllItems()
+    public void ClearNonPersistents()
     {
         foreach (var itemID in _unlockedItemIDs)
         {
+            if(itemID.Equals("shotgun")) continue; // Keep shotgun unlocked
             UnapplyPurchasedItem(itemID);
+            _unlockedItemIDs.Remove(itemID);
         }
-        _unlockedItemIDs.Clear();
+    }
+
+    public bool IsAlreadyPurchased(ShopItemSO item)
+    {
+        return _unlockedItemIDs.Contains(item.itemID);
     }
     
     private void ApplyPurchasedItem(string itemID)
@@ -65,7 +71,8 @@ public class PlayerData : Singleton<PlayerData>
                 isDoublePistolFireRate = true;
                 break;
             case "shotgun":
-                // Equip and buy
+                PlayerDmgDealer.Instance.AddShotgun();
+                PlayerDmgDealer.Instance.EquipGun(1); // temporary setter
                 break;
             case "2x_shotgun_fire_rate":
                 isDoubleShotgunFireRate = true;
@@ -99,7 +106,7 @@ public class PlayerData : Singleton<PlayerData>
                 isDoublePistolFireRate = false;
                 break;
             case "shotgun":
-                // Equip and buy
+                // Never Unapply anyways
                 break;
             case "2x_shotgun_fire_rate":
                 isDoubleShotgunFireRate = false;

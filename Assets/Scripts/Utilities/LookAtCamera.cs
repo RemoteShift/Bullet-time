@@ -6,12 +6,17 @@ public class LookAtCamera : MonoBehaviour
     {
         if (Camera.main)
         {
-            var dir = Camera.main.transform.position - transform.position;
+            // Face AWAY from the camera so the UI front (+Z) points toward the player
+            var dir = transform.position - Camera.main.transform.position;
 
             if (dir != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 
-                    Clock.Instance.DeltaTime * 10f);
+                var targetRotation = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation, 
+                    targetRotation, 
+                    Clock.Instance.DeltaTime * 10f
+                );
             }
         }
     }
