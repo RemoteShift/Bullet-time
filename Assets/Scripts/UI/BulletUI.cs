@@ -68,7 +68,7 @@ public class BulletUI : Singleton<BulletUI>
         }
     }
     
-    private void UpdateBulletIcons(int deltaBullets)
+    public void UpdateBulletIcons(int deltaBullets)
     {
         if (deltaBullets < 0)
         {
