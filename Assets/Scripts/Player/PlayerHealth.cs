@@ -4,7 +4,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public void TakeDamage(float damage)
     {
-        var damageInBullets = Mathf.RoundToInt(damage);
+        var damageInBullets = Mathf.RoundToInt(PlayerData.Instance.isHalfDmgTaken ? damage / 2 : damage);
         
         BulletManager.Instance.ForceTakeBullets(damageInBullets);
 

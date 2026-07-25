@@ -83,7 +83,7 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
             if (damagedTargets.Add(damageable))
             {
                 damageable.Stun();
-                damageable.TakeDamage(slamDamage);
+                damageable.TakeDamage(PlayerData.Instance.isDoubleDmgMul ? slamDamage * 2f : slamDamage);
 
                 if (damageable is EnemyBrain enemyBrain)
                 {

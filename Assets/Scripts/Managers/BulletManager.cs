@@ -9,20 +9,24 @@ public class BulletManager : Singleton<BulletManager>
     
     public int currentBullets;
     public int currentBulletCap = 50;
+    public int bulletIncPerRound = 20;
     private float _bulletTimer;
     
     public UnityEvent<int> OnBulletCountChangedDelta;
     public UnityEvent<int> OnBulletCountChanged;
 
-    protected override void Awake()
+    public void InitializeNextRound(int extraBullets = 0)
     {
-        base.Awake();
-        Initialize();
+        currentBullets = bulletIncPerRound + extraBullets + (PlayerData.Instance.isPlus20BulletsPerRound ? 20 : 0) ;
+        _bulletTimer = 0f;
+        BulletUI.Instance.PopulateBulletIcons(currentBulletCap);
+        BulletUI.Instance.UpdateBulletText(currentBullets);
     }
 
-    public void Initialize(int extraBullets = 0)
+    public void InitializeNextStage(int bulletCap)
     {
-        currentBullets = currentBulletCap + extraBullets;
+        currentBulletCap = bulletCap;
+        currentBullets = currentBulletCap;
         _bulletTimer = 0f;
         BulletUI.Instance.PopulateBulletIcons(currentBulletCap);
         BulletUI.Instance.UpdateBulletText(currentBullets);

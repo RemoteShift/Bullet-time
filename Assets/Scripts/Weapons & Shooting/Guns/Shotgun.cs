@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Shotgun : BaseGun
@@ -7,6 +8,24 @@ public class Shotgun : BaseGun
     [SerializeField] private float damagePerPellet = 10f;
     [SerializeField] private float range = 15f;
     [SerializeField] private float spreadAngle = 6f;
+
+    public override void TryShoot()
+    {
+        if(Time.time < _nextFireTime)
+        {
+            return;
+        }
+
+        if(!BulletManager.Instance.TryTakeBullets(bulletCostPerShot))
+        {
+            return;
+        }
+        
+        _nextFireTime = Time.time + (PlayerData.Instance.isDoubleShotgunFireRate ? 0.5f : 1) * fireRate;
+
+        FirePattern();
+        PlayAnimationOnce("Shooting");
+    }
 
     protected override void FirePattern()
     {
@@ -27,9 +46,26 @@ public class Shotgun : BaseGun
             {
                 if (TryGetDamageable(hit.collider, out var target))
                 {
-                    target.TakeDamage(damagePerPellet);
+                    target.TakeDamage(PlayerData.Instance.isDoubleDmgMul ? damagePerPellet * 2f : damagePerPellet);
                 }
             }
         }
+    }
+
+    protected override IEnumerator PlayAndReturnRoutine(string stateName)
+    {
+        var speed = PlayerData.Instance.isDoubleShotgunFireRate ? 2f : 1f;
+        
+        gunAnimator.Play(stateName, 0, 0f);
+        gunAnimator.SetFloat("ShootingSpeedMul", speed);
+        
+        yield return null;
+        
+        var info = gunAnimator.GetCurrentAnimatorStateInfo(0);
+        var duration = info.length / speed;
+        
+        yield return new WaitForSeconds(duration);
+        
+        gunAnimator.Play("Idle"); 
     }
 }

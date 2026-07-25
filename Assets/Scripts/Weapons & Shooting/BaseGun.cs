@@ -18,7 +18,7 @@ public abstract class BaseGun : MonoBehaviour
     [Header("3D Shooting References")]
     [SerializeField] protected Camera playerCamera;
 
-    private float _nextFireTime;
+    protected float _nextFireTime;
 
     protected bool TryHitScan(Ray ray, float range, out RaycastHit hit)
     {
@@ -65,42 +65,14 @@ public abstract class BaseGun : MonoBehaviour
         }
     }
 
-    public void TryShoot()
-    {
-        if(Time.time < _nextFireTime)
-        {
-            return;
-        }
-
-        if(!BulletManager.Instance.TryTakeBullets(bulletCostPerShot))
-        {
-            return;
-        }
-        
-        _nextFireTime = Time.time + fireRate;
-
-        FirePattern();
-        PlayAnimationOnce("Shooting");
-    }
+    public abstract void TryShoot();
     
     protected abstract void FirePattern();
 
-    private void PlayAnimationOnce(string stateName)
+    protected void PlayAnimationOnce(string stateName)
     {
         StartCoroutine(PlayAndReturnRoutine(stateName));
     }
-    
-    private IEnumerator PlayAndReturnRoutine(string stateName)
-    {
-        gunAnimator.Play(stateName, 0, 0f);
-        
-        yield return null;
-        
-        var info = gunAnimator.GetCurrentAnimatorStateInfo(0);
-        var duration = info.length;
-        
-        yield return new WaitForSeconds(duration);
-        
-        gunAnimator.Play("Idle"); 
-    }
+
+    protected abstract IEnumerator PlayAndReturnRoutine(string stateName);
 }

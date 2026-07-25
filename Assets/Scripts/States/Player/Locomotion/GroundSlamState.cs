@@ -19,7 +19,8 @@ public class GroundSlamState : PlayerLocomState
         
         if (player.GroundCheck.IsGrounded)
         {
-            OnSlamImpact();
+            if(PlayerData.Instance.isGroundSlamAttack)
+                OnSlamImpact();
             player.SwitchState(new GroundedState(player, Rb));
             return;
         }
