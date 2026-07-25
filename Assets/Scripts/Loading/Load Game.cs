@@ -1,7 +1,7 @@
 using UnityEngine;
 public class LoadGame : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         LoadingManager.Instance.LoadScene("Game");
     }
