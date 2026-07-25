@@ -5,6 +5,7 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
 {
     [Header("Gun Settings")]
     [SerializeField] private BaseGun currentGun;
+    public bool canShoot;
     [SerializeField] private bool isAutomatic = true;
 
     private bool _isShooting;
@@ -56,7 +57,7 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
     
     private void HandleShootingInput(bool performed)
     {
-        if (!currentGun) return;
+        if (!currentGun || !canShoot) return;
 
         _isShooting = performed;
     }
