@@ -5,16 +5,17 @@ using UnityEngine.Serialization;
 
 public class InputHandler : Singleton<InputHandler>
 {
+    [FormerlySerializedAs("MouseInput")]
     [FormerlySerializedAs("mouseInput")]
     [Header("Action References")] 
-    [SerializeField] private InputActionReference MouseInput;
+    [SerializeField] private InputActionReference LookInput;
     [SerializeField] private InputActionReference LeftClickInput;
     [SerializeField] private InputActionReference MoveInput;
     [SerializeField] private InputActionReference JumpInput;
     [SerializeField] private InputActionReference DashInput;
     [SerializeField] private InputActionReference SlideInput;
     
-    public event Action<Vector2> OnMouseInputChanged;
+    public event Action<Vector2, bool> OnLookInputChanged;
     public event Action<bool> OnLeftClickInput;
     
     public Vector2 moveInput { get; private set; }
@@ -25,27 +26,27 @@ public class InputHandler : Singleton<InputHandler>
 
     private void OnEnable()
     {
-        MouseInput.action.Enable();
+        LookInput.action.Enable();
         LeftClickInput.action.Enable();
         MoveInput.action.Enable();
         JumpInput.action.Enable();
         DashInput.action.Enable();
         SlideInput.action.Enable();
 
-        MouseInput.action.performed += HandleMouseInput;
-        MouseInput.action.canceled += HandleMouseInput;
+        LookInput.action.performed += HandleLookInput;
+        LookInput.action.canceled += HandleLookInput;
         LeftClickInput.action.performed += HandleLeftClickInput;
         LeftClickInput.action.canceled += HandleLeftClickInput;
     }
 
     private void OnDisable()
     {
-        MouseInput.action.performed -= HandleMouseInput;
-        MouseInput.action.canceled -= HandleMouseInput;
+        LookInput.action.performed -= HandleLookInput;
+        LookInput.action.canceled -= HandleLookInput;
         LeftClickInput.action.performed -= HandleLeftClickInput;
         LeftClickInput.action.canceled -= HandleLeftClickInput;
 
-        MouseInput.action.Disable();
+        LookInput.action.Disable();
         LeftClickInput.action.Disable();
         MoveInput.action.Disable();
         JumpInput.action.Disable();
@@ -65,9 +66,9 @@ public class InputHandler : Singleton<InputHandler>
         IsHoldingSlide = SlideInput.action.IsPressed(); 
     }
 
-    private void HandleMouseInput(InputAction.CallbackContext context)
+    private void HandleLookInput(InputAction.CallbackContext context)
     {
-        OnMouseInputChanged?.Invoke(context.ReadValue<Vector2>());
+        OnLookInputChanged?.Invoke(context.ReadValue<Vector2>(), context.control.device is Gamepad);
     }
 
     private void HandleLeftClickInput(InputAction.CallbackContext context)
