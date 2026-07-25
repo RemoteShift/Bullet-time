@@ -72,7 +72,6 @@ public class InputHandler : Singleton<InputHandler>
 
     private void HandleLeftClickInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Left clicked");
         if(context.performed)
         {
             OnLeftClickInput?.Invoke(true);

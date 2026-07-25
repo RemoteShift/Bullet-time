@@ -34,7 +34,7 @@ public class BulletUI : Singleton<BulletUI>
         UpdateBulletIcons(BulletManager.Instance.currentBullets);
     }
 
-    private void UpdateBulletText(int currentBullets)
+    public void UpdateBulletText(int currentBullets)
     {
         if (currentBullets > BulletManager.Instance.currentBulletCap)
         {
@@ -55,6 +55,8 @@ public class BulletUI : Singleton<BulletUI>
             var icon = Instantiate(bulletIconPrefab, bulletIconsContentTransform);
             bulletIcons.Add(icon);
         }
+        
+        _lastBulletIndex = bulletCap - 1;
     }
 
     private void ClearIcons()

@@ -6,11 +6,10 @@ public class Test : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            LoadingManager.Instance.LoadScene("Shop", onComplete: () =>
-            {
-                BulletManager.Instance.bulletDecEnabled = false;
-                PlayerDmgDealer.Instance.canShoot = false;
-            });
+            BulletManager.Instance.bulletDecEnabled = false;
+            PlayerDmgDealer.Instance.ForceStopShooting();
+            PlayerDmgDealer.Instance.canShoot = false;
+            LoadingManager.Instance.LoadScene("Shop");
         }
     }
 }

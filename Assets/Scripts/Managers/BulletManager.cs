@@ -25,6 +25,7 @@ public class BulletManager : Singleton<BulletManager>
         currentBullets = currentBulletCap + extraBullets;
         _bulletTimer = 0f;
         BulletUI.Instance.PopulateBulletIcons(currentBulletCap);
+        BulletUI.Instance.UpdateBulletText(currentBullets);
     }
 
     private void FixedUpdate()

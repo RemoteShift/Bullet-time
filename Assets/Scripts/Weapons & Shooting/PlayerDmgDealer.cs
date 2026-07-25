@@ -30,7 +30,7 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
     private void Update()
     {
         if (!currentGun) return;
-
+        
         switch (_isShooting)
         {
             case true when !isAutomatic:
@@ -53,6 +53,11 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
         currentGun = newGun;
         isAutomatic = automaticSetting;
         currentGun.gameObject.SetActive(true);
+    }
+
+    public void ForceStopShooting()
+    {
+        _isShooting = false;
     }
     
     private void HandleShootingInput(bool performed)
