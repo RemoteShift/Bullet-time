@@ -7,9 +7,9 @@ public class PlayerData : Singleton<PlayerData>
 
     private readonly HashSet<string> _unlockedItemIDs = new();
 
-    #region Properties
+    #region Shop Properties
 
-    [Header("Properties")]
+    [Header("Shop Properties")]
     [field: SerializeField] public bool isPistolPiercing { get; private set; }
     [field: SerializeField] public bool isDoublePistolFireRate { get; private set; }
     [field: SerializeField] public bool isDoubleShotgunFireRate { get; private set; }
@@ -17,6 +17,12 @@ public class PlayerData : Singleton<PlayerData>
     [field: SerializeField] public bool isDoubleDmgMul { get; private set; }
     [field: SerializeField] public bool isHalfDmgTaken { get; private set; }
     [field: SerializeField] public bool isPlus20BulletsPerRound { get; private set; }
+
+    #endregion
+
+    #region Properties
+
+    public bool finishedTutorial;
 
     #endregion
     
@@ -53,6 +59,15 @@ public class PlayerData : Singleton<PlayerData>
             UnapplyPurchasedItem(itemID);
             _unlockedItemIDs.Remove(itemID);
         }
+    }
+
+    public void ClearAll()
+    {
+        foreach (var itemID in _unlockedItemIDs)
+        {
+            UnapplyPurchasedItem(itemID);
+        }
+        _unlockedItemIDs.Clear();
     }
 
     public bool IsAlreadyPurchased(ShopItemSO item)

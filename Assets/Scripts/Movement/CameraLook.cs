@@ -7,6 +7,8 @@ public class CameraLook : Singleton<CameraLook>
     [SerializeField] private Transform yawPivot;
     [SerializeField] private Transform pitchPivot;
 
+    public bool canLook = false;
+
     private float yaw;
     private float pitch;
     private Vector2 lookInput;
@@ -14,8 +16,7 @@ public class CameraLook : Singleton<CameraLook>
 
     private void OnEnable()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        LockCursor();
         
         // Pass the action context or device info from your InputHandler
         InputHandler.Instance.OnLookInputChanged += HandleLookInput;
@@ -23,7 +24,23 @@ public class CameraLook : Singleton<CameraLook>
 
     private void OnDisable()
     {
+        UnlockCursor();
+        
         InputHandler.Instance.OnLookInputChanged -= HandleLookInput;
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        canLook = false;
+    }
+
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        canLook = true;
     }
 
     // Update your handler signature to accept a device flag (or check InputSystem directly)
@@ -35,6 +52,8 @@ public class CameraLook : Singleton<CameraLook>
 
     private void Update()
     {
+        if (!canLook) return;
+        
         // Pick sensitivity based on active device
         var currentSensitivity = isUsingGamepad ? controllerLookSensitivity : mouseSensitivity;
 

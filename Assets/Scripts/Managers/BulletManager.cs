@@ -26,7 +26,6 @@ public class BulletManager : Singleton<BulletManager>
 
     public void InitializeNextStage(int bulletCap)
     {
-        PlayerData.Instance.ClearNonPersistents();
         currentBulletCap = bulletCap;
         currentBullets = currentBulletCap;
         _bulletTimer = 0f;
@@ -36,9 +35,10 @@ public class BulletManager : Singleton<BulletManager>
 
     private void FixedUpdate()
     {
+        if (!bulletDecEnabled) return;
+        
         if (currentBullets > 0)
         {
-            if (!bulletDecEnabled) return;
             _bulletTimer += Clock.Instance.FixedDeltaTime;
             if (_bulletTimer >= 1f)
             {
@@ -50,7 +50,7 @@ public class BulletManager : Singleton<BulletManager>
         }
         else
         {
-            Debug.Log("Out of bullets! YOU LOSE!");
+            LoseScreenController.ShowLoseScreen();
         }
     }
 

@@ -3,11 +3,9 @@ public class LoadGame : MonoBehaviour
 {
     void Awake()
     {
-        LoadingManager.Instance.LoadScene("Game", onComplete: () =>
+        LoadingManager.Instance.LoadScene("Main Menu", onComplete: () =>
         {
-            BulletManager.Instance.InitializeNextStage(BulletManager.Instance.currentBulletCap);
-            BulletManager.Instance.bulletDecEnabled = true;
-            PlayerDmgDealer.Instance.canShoot = true;
+            CameraLook.Instance.UnlockCursor();
         });
     }
 }
