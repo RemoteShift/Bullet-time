@@ -37,6 +37,7 @@ public class MainMenuController : MonoBehaviour
             BulletManager.Instance.bulletDecEnabled = true;
             PlayerDmgDealer.Instance.canShoot = true;
             PlayerDmgDealer.Instance.ForceStopShooting();
+            LocomotionController.Instance.canMove = true;
             GameScreenController.ShowGameScreen();
             
             if(sceneName.Equals("Tutorial"))

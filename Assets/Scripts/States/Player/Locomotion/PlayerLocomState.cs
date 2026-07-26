@@ -22,8 +22,8 @@ public abstract class PlayerLocomState : IState
             return;
         }
     }
-    
-    public virtual void FixedUpdate() { }
+
+    public virtual void FixedUpdate() {}
 
     protected Vector3 GetCameraRelativeMoveDirection()
     {

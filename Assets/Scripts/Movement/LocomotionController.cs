@@ -32,6 +32,8 @@ public class LocomotionController : Singleton<LocomotionController>
     public float slamAttackThreshhold = 0.5f;
 
     #endregion
+
+    public bool canMove;
     
     private int _dashCount = 0;
     public int DashCount => _dashCount;
@@ -51,6 +53,8 @@ public class LocomotionController : Singleton<LocomotionController>
 
     private void Update()
     {
+        if (!canMove) return;
+        
         currentState?.Update();
         if(_dashCount < maxDashCount)
         {
@@ -66,7 +70,8 @@ public class LocomotionController : Singleton<LocomotionController>
 
     private void FixedUpdate()
     {
-        currentState?.FixedUpdate();
+        if(canMove)
+            currentState?.FixedUpdate();
     }
 
     public void ResetPositionRotation(Vector3 startPosition)

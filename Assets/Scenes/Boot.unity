@@ -1127,7 +1127,7 @@ MonoBehaviour:
   <isHalfDmgTaken>k__BackingField: 0
   <isPlus20BulletsPerRound>k__BackingField: 0
   finishedTutorial: 0
-  tutorialStartPosition: {x: 0, y: 0, z: 0}
+  tutorialStartPosition: {x: -14, y: 5, z: 2}
   gameStartPosition: {x: 0, y: 1, z: 0}
 --- !u!1 &627382958
 GameObject:

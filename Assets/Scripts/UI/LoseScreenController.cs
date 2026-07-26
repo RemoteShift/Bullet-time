@@ -12,6 +12,7 @@ public class LoseScreenController : Singleton<LoseScreenController>
         CameraLook.Instance.UnlockCursor();
         PlayerDmgDealer.Instance.canShoot = false;
         BulletManager.Instance.bulletDecEnabled = false;
+        LocomotionController.Instance.canMove = false;
         
         youLoseText.transform.DOPunchScale(Vector3.one * 0.5f, 0.5f, 10, 1);
         
@@ -38,6 +39,7 @@ public class LoseScreenController : Singleton<LoseScreenController>
             PlayerDmgDealer.Instance.canShoot = true;
             PlayerDmgDealer.Instance.ForceStopShooting();
             CameraLook.Instance.LockCursor();
+            LocomotionController.Instance.canMove = true;
             GameScreenController.ShowGameScreen();
             
             if(sceneName.Equals("Tutorial"))
