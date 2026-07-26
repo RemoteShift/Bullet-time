@@ -49,6 +49,7 @@ public class SceneTransition : MonoBehaviour
                         PlayerData.Instance.GetSceneRotation(nextSceneName));
                     //
                     BulletManager.Instance.InitializeNextRound();
+                    BulletManager.Instance.bulletDecEnabled = true;
                 };
                 
                 ShopTransitionHandler.Instance.Initialize(nextSceneName, nextBulletCap, onComplete);
