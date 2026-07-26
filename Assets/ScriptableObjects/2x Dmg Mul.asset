@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: 2X DMG MUL
   itemType: 1
   price: 40
-  displayPrefab: {fileID: 0}
+  displayPrefab: {fileID: 1341958207860167998, guid: 58e849efc5fffbd45af6f820811d8d9a, type: 3}

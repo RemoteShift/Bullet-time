@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: +20 Bullets Per Round
   itemType: 1
   price: 30
-  displayPrefab: {fileID: 0}
+  displayPrefab: {fileID: 1341958207860167998, guid: 46959dd2353d3114f852b5c462a29389, type: 3}

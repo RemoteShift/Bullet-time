@@ -33,6 +33,9 @@ public class PlayerData : Singleton<PlayerData>
     [SerializeField] private Vector3 tutorialStartPosition;
     [SerializeField] private Vector3 gameStartPosition;
     [SerializeField] private Vector3 shopStartPosition;
+    [SerializeField] private Vector3 stage1Round2Position;
+    [SerializeField] private Vector3 stage2Round1Position;
+    [SerializeField] private Vector3 stage2Round2Position;
 
     #endregion
 
@@ -42,7 +45,9 @@ public class PlayerData : Singleton<PlayerData>
     [SerializeField] private Vector3 tutorialStartRotation;
     [SerializeField] private Vector3 gameStartRotation;
     [SerializeField] private Vector3 shopStartRotation;
-
+    [SerializeField] private Vector3 stage1Round2Rotation;
+    [SerializeField] private Vector3 stage2Round1Rotation;
+    [SerializeField] private Vector3 stage2Round2Rotation;
     #endregion
     
     public bool TryBuyItem(ShopItemSO item)
@@ -99,6 +104,12 @@ public class PlayerData : Singleton<PlayerData>
                 return gameStartPosition;
             case "Shop":
                 return shopStartPosition;
+            case "Stage 1 - Combat":
+                return stage1Round2Position;
+            case "Stage 2 - First Round":
+                return stage2Round1Position;
+            case "Stage 2 - Second Round":
+                return stage2Round2Position;
             default:
                 Debug.LogWarning($"Unknown scene name: {sceneName}. Returning Vector3.zero.");
                 return Vector3.zero;
@@ -115,6 +126,12 @@ public class PlayerData : Singleton<PlayerData>
                 return gameStartRotation;
             case "Shop":
                 return shopStartRotation;
+            case "Stage 1 - Combat":
+                return stage1Round2Rotation;
+            case "Stage 2 - First Round":
+                return stage2Round1Rotation;
+            case "Stage 2 - Second Round":
+                return stage2Round2Rotation;
             default:
                 Debug.LogWarning($"Unknown scene name: {sceneName}. Returning Vector3.zero.");
                 return Vector3.zero;

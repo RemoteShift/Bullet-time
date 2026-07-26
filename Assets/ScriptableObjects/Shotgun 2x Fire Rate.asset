@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Shotgun 2X Fire Rate
   itemType: 1
   price: 20
-  displayPrefab: {fileID: 0}
+  displayPrefab: {fileID: 1341958207860167998, guid: a24106209ca1bfc4b88f098e731db652, type: 3}

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SceneTransition : MonoBehaviour
 {
+    public bool quitGame;
+    
     [SerializeField] protected Color lockedColor;
     [SerializeField] protected Color unlockedColor;
     
@@ -45,6 +47,9 @@ public class SceneTransition : MonoBehaviour
             if(enemiesTransform)
                 if(enemiesTransform.childCount > 0) return;
 
+            if(quitGame)
+                Application.Quit();
+            
             if (isRound)
             {
                 Action onComplete = () =>

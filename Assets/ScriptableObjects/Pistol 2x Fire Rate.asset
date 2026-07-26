@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Pistol 2X Fire Rate
   itemType: 1
   price: 20
-  displayPrefab: {fileID: 0}
+  displayPrefab: {fileID: 1341958207860167998, guid: 849e116ee71676a44a13502d446b5712, type: 3}

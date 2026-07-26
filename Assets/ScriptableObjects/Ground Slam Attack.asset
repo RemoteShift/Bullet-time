@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Ground Slam Attack
   itemType: 1
   price: 15
-  displayPrefab: {fileID: 0}
+  displayPrefab: {fileID: 1341958207860167998, guid: fc8ff9befd0cd57468db9b496ae39378, type: 3}
