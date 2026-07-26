@@ -1003,6 +1003,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 503
   slamKnockbackDistance: 3
+  pistolShoot: {fileID: 8300000, guid: ccfe769234dca60499b5456cc8f48e6a, type: 3}
+  shotgunShoot: {fileID: 8300000, guid: b88408ce39f8c25438af0b279b584321, type: 3}
 --- !u!114 &430514098
 MonoBehaviour:
   m_ObjectHideFlags: 0

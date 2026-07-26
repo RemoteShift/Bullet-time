@@ -23,6 +23,10 @@ public class PlayerDmgDealer : Singleton<PlayerDmgDealer>
     [SerializeField] private float slamRadius = 5f;
     [SerializeField] private LayerMask slamHitLayers;
     [SerializeField] private float slamKnockbackDistance = 2f;
+    
+    [Header("Gun SFX")]
+    public AudioClip pistolShoot;
+    public AudioClip shotgunShoot;
 
     private void OnEnable()
     {

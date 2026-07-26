@@ -24,6 +24,8 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
     [Header("Pathfinding Settings")] [SerializeField]
     private float repathInterval = 0.15f;
     private float _nextRepathTime;
+
+    protected EnemyAudio enemyAudio;
     
     protected virtual void Awake()
     {
@@ -35,6 +37,7 @@ public abstract class EnemyBrain : MonoBehaviour, IDamageable
         ReturnToDefaultState();
         agent.updateRotation = false;
         target = LocomotionController.Instance.gameObject.transform;
+        enemyAudio = GetComponent<EnemyAudio>();
     }
 
     protected void Update()

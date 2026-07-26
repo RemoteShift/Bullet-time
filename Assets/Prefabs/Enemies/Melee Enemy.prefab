@@ -141,6 +141,7 @@ MonoBehaviour:
   repathInterval: 0.15
   meleeRange: 2
   meleeDamage: 5
+  meleeAttack: {fileID: 8300000, guid: 3cb0ac8ee14a75a4e83ca73afd5af911, type: 3}
 --- !u!136 &7571813987669428045
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -274,5 +275,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAudio
   audioSource: {fileID: 1152334816048918855}
-  minDistance: 2
+  minDistance: 0
   maxDistance: 25

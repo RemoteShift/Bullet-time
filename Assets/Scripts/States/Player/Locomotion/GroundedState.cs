@@ -34,7 +34,7 @@ public class GroundedState : PlayerLocomState
     {
         base.FixedUpdate();
         
-        var dir = GetCameraRelativeMoveDirection();
+        var dir = CachedCameraMoveDirection;
         var groundNormal = player.GroundCheck.IsGrounded ? player.GroundCheck.GroundNormal : Vector3.up;
         var moveDirection = Vector3.ProjectOnPlane(dir, groundNormal);
         var currentVelocity = Rb.linearVelocity;

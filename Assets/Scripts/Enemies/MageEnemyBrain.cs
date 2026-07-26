@@ -11,6 +11,9 @@ public class MageEnemyBrain : EnemyBrain
     [SerializeField] private Renderer renderer;
     [SerializeField] private float floatDistance = 0.5f;
     [SerializeField] private float floatDuration = 0.6f;
+    
+    [Header("SFX")]
+    public AudioClip mageAttack;
 
     private Coroutine _attackCoroutine;
     private Tween _floatTween;
@@ -22,6 +25,8 @@ public class MageEnemyBrain : EnemyBrain
 
     public void CastSpell()
     {
+        enemyAudio.PlayEnemySound(mageAttack, loop: true, volumeMult: 5f);
+        
         _attackCoroutine = StartCoroutine(CastSpellCoroutine());
         
         
@@ -34,6 +39,8 @@ public class MageEnemyBrain : EnemyBrain
 
     public void DecastSpell()
     {
+        enemyAudio.StopEnemySound();
+        
         if (_attackCoroutine != null)
             StopCoroutine(_attackCoroutine);
         

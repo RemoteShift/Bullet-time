@@ -6,6 +6,9 @@ public class MeleeEnemyBrain : EnemyBrain
     public float meleeRange = 2.5f;
     public float meleeDamage = 5f;
     // public Transform attackPoint;
+    
+    [Header("SFX")]
+    public AudioClip meleeAttack;
 
     public override void ReturnToDefaultState()
     {
@@ -22,6 +25,7 @@ public class MeleeEnemyBrain : EnemyBrain
         {
             if (target.TryGetComponent<IDamageable>(out var damageable))
             {
+                enemyAudio.PlayEnemySound(meleeAttack, volumeMult: 2f);
                 damageable.TakeDamage(meleeDamage);
             }
         }

@@ -27,6 +27,7 @@ public class Shotgun : BaseGun
 
         FirePattern();
         PlayAnimationOnce("Shooting");
+        AudioManager.Instance.PlayGlobalSFX(PlayerDmgDealer.Instance.shotgunShoot, 1.4f);
     }
 
     protected override void FirePattern()

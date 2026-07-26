@@ -17,6 +17,9 @@ public class RangedEnemyBrain : EnemyBrain
 
     [Header("Other Settings")]
     [SerializeField] private GameObject _bulletPickupPrefab;
+
+    [Header("SFX")] 
+    public AudioClip rangedAttack;
     
     public override void ReturnToDefaultState()
     {
@@ -54,6 +57,8 @@ public class RangedEnemyBrain : EnemyBrain
     public void FireProjectile()
     {
         if (!target) return;
+        
+        enemyAudio.PlayEnemySound(rangedAttack, volumeMult: 2f);
 
         var spawnPos = muzzlePoint ? muzzlePoint.position : transform.position + Vector3.up * 1.5f;
         

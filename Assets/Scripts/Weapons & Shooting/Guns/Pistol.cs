@@ -23,6 +23,7 @@ public class Pistol : BaseGun
 
         FirePattern();
         PlayAnimationOnce("Shooting");
+        AudioManager.Instance.PlayGlobalSFX(PlayerDmgDealer.Instance.pistolShoot, 0.8f);
     }
 
     protected override void FirePattern()

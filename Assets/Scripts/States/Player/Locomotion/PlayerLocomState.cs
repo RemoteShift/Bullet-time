@@ -4,6 +4,7 @@ public abstract class PlayerLocomState : IState
 {
     protected readonly LocomotionController player;
     protected Rigidbody Rb;
+    protected Vector3 CachedCameraMoveDirection { get; private set; } = Vector3.zero;
 
     protected PlayerLocomState(LocomotionController player, Rigidbody rb)
     {
@@ -16,6 +17,8 @@ public abstract class PlayerLocomState : IState
 
     public virtual void Update()
     {
+        CachedCameraMoveDirection = GetCameraRelativeMoveDirection();
+
         if (player.input.DashPressed)
         {
             player.Dash();

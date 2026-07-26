@@ -145,6 +145,7 @@ MonoBehaviour:
   renderer: {fileID: 3751983142856628952}
   floatDistance: 0.5
   floatDuration: 0.3
+  mageAttack: {fileID: 8300000, guid: 99385dd3d300eb0418c489cf97434063, type: 3}
 --- !u!136 &2913110144897882196
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAudio
   audioSource: {fileID: -4491654855326456607}
-  minDistance: 2
+  minDistance: 0
   maxDistance: 25
 --- !u!1 &2185625997779774507
 GameObject:
