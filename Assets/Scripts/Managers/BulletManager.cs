@@ -15,10 +15,10 @@ public class BulletManager : Singleton<BulletManager>
     public UnityEvent<int> OnBulletCountChangedDelta;
     public UnityEvent<int> OnBulletCountChanged;
 
-    public void InitializeNextRound(int extraBullets = 0)
+    public void InitializeNextRound()
     {
         var oldBullets = currentBullets;
-        currentBullets = bulletIncPerRound + extraBullets + (PlayerData.Instance.isPlus20BulletsPerRound ? 20 : 0) ;
+        currentBullets = bulletIncPerRound + oldBullets + (PlayerData.Instance.isPlus20BulletsPerRound ? 20 : 0) ;
         _bulletTimer = 0f;
         BulletUI.Instance.UpdateBulletIcons(currentBullets - oldBullets);
         BulletUI.Instance.UpdateBulletText(currentBullets);

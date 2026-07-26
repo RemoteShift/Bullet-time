@@ -27,10 +27,11 @@ public class MainMenuController : MonoBehaviour
 
     public void Play()
     {
-        var sceneName = PlayerData.Instance.finishedTutorial ? "Game" : "Tutorial";
+        var sceneName = PlayerData.Instance.isTutorialCompleted ? "Game" : "Tutorial";
         
         LoadingManager.Instance.LoadScene(sceneName, onComplete: () =>
         {
+            LoseScreenController.Instance.currentStageSceneName = sceneName;
             CameraLook.Instance.LockCursor();
             PlayerData.Instance.ClearAll();
             BulletManager.Instance.InitializeNextStage(BulletManager.Instance.currentBulletCap);
@@ -40,12 +41,8 @@ public class MainMenuController : MonoBehaviour
             LocomotionController.Instance.canMove = true;
             GameScreenController.ShowGameScreen();
             
-            if(sceneName.Equals("Tutorial"))
-                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.tutorialStartPosition, 
-                    PlayerData.Instance.tutorialStartRotation);
-            else
-                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.gameStartPosition, 
-                    PlayerData.Instance.gameStartRotation);
+            LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.GetScenePosition(sceneName), 
+                PlayerData.Instance.GetSceneRotation(sceneName));
         });
     }
     

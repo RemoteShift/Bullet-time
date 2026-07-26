@@ -23,23 +23,23 @@ public class PlayerData : Singleton<PlayerData>
     #region Properties
     
     [Header("Properties")]
-    public bool finishedTutorial;
+    public bool isTutorialCompleted;
 
     #endregion
 
     #region Scene Start Positions
 
     [Header("Scene Start Positions")]
-    public Vector3 tutorialStartPosition;
-    public Vector3 gameStartPosition;
+    [SerializeField] private Vector3 tutorialStartPosition;
+    [SerializeField] private Vector3 gameStartPosition;
 
     #endregion
 
     #region Scene Start Rotations
 
     [Header("Scene Start Rotations")]
-    public Vector3 tutorialStartRotation;
-    public Vector3 gameStartRotation;
+    [SerializeField] private Vector3 tutorialStartRotation;
+    [SerializeField] private Vector3 gameStartRotation;
 
     #endregion
     
@@ -85,6 +85,34 @@ public class PlayerData : Singleton<PlayerData>
             UnapplyPurchasedItem(itemID);
         }
         _unlockedItemIDs.Clear();
+    }
+
+    public Vector3 GetScenePosition(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "Tutorial":
+                return tutorialStartPosition;
+            case "Game":
+                return gameStartPosition;
+            default:
+                Debug.LogWarning($"Unknown scene name: {sceneName}. Returning Vector3.zero.");
+                return Vector3.zero;
+        }
+    }
+
+    public Vector3 GetSceneRotation(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "Tutorial":
+                return tutorialStartRotation;
+            case "Game":
+                return gameStartRotation;
+            default:
+                Debug.LogWarning($"Unknown scene name: {sceneName}. Returning Vector3.zero.");
+                return Vector3.zero;
+        }
     }
 
     public bool IsAlreadyPurchased(ShopItemSO item)

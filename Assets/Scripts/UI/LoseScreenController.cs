@@ -6,6 +6,7 @@ public class LoseScreenController : Singleton<LoseScreenController>
     [Header("References")]
     [SerializeField] private GameObject youLoseText;
     [SerializeField] private GameObject mainMenuButton;
+    public string currentStageSceneName;
 
     private void OnCanvasEnable()
     {
@@ -29,11 +30,9 @@ public class LoseScreenController : Singleton<LoseScreenController>
     {
         HideLoseScreen();
         
-        var sceneName = PlayerData.Instance.finishedTutorial ? "Game" : "Tutorial";
-        
-        LoadingManager.Instance.LoadScene(sceneName, onComplete: () =>
+        LoadingManager.Instance.LoadScene(currentStageSceneName, onComplete: () =>
         {
-            PlayerData.Instance.ClearAll();
+            PlayerData.Instance.ClearNonPersistents();
             BulletManager.Instance.InitializeNextStage(BulletManager.Instance.currentBulletCap);
             BulletManager.Instance.bulletDecEnabled = true;
             PlayerDmgDealer.Instance.canShoot = true;
@@ -42,12 +41,8 @@ public class LoseScreenController : Singleton<LoseScreenController>
             LocomotionController.Instance.canMove = true;
             GameScreenController.ShowGameScreen();
             
-            if(sceneName.Equals("Tutorial"))
-                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.tutorialStartPosition, 
-                    PlayerData.Instance.tutorialStartRotation);
-            else
-                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.gameStartPosition, 
-                    PlayerData.Instance.gameStartRotation);
+            LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.GetScenePosition(currentStageSceneName), 
+                PlayerData.Instance.GetSceneRotation(currentStageSceneName));
         });
     }
     

@@ -8,7 +8,7 @@ public class Test1 : MonoBehaviour
         {
             LoadingManager.Instance.LoadScene("Game", onComplete: () =>
             {
-                BulletManager.Instance.InitializeNextRound(extraBullets:BulletManager.Instance.currentBullets);
+                BulletManager.Instance.InitializeNextRound();
                 BulletManager.Instance.bulletDecEnabled = true;
                 PlayerDmgDealer.Instance.canShoot = true;
             });
