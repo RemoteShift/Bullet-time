@@ -22,7 +22,6 @@ public class LoadingSceneController : MonoBehaviour
 
         _loadingCanvas = GetComponent<Canvas>();
         _loadingCanvas.worldCamera = LocomotionController.Instance.GetComponentInChildren<Camera>();
-        LocomotionController.Instance.ResetPositionRotation(Vector3.up);
         LocomotionController.Instance.rb.useGravity = false;
         
         StartCoroutine(LoadTargetSceneAsync());

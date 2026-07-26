@@ -21,8 +21,17 @@ public class PlayerData : Singleton<PlayerData>
     #endregion
 
     #region Properties
-
+    
+    [Header("Properties")]
     public bool finishedTutorial;
+
+    #endregion
+
+    #region Scene Start Positions
+
+    [Header("Scene Start Positions")]
+    public Vector3 tutorialStartPosition;
+    public Vector3 gameStartPosition;
 
     #endregion
     

@@ -27,14 +27,22 @@ public class MainMenuController : MonoBehaviour
 
     public void Play()
     {
-        LoadingManager.Instance.LoadScene(/*PlayerData.Instance.finishedTutorial ? */"Game"/* : "Tutorial"*/, onComplete: () =>
+        var sceneName = PlayerData.Instance.finishedTutorial ? "Game" : "Tutorial";
+        
+        LoadingManager.Instance.LoadScene(sceneName, onComplete: () =>
         {
             CameraLook.Instance.LockCursor();
             PlayerData.Instance.ClearAll();
             BulletManager.Instance.InitializeNextStage(BulletManager.Instance.currentBulletCap);
             BulletManager.Instance.bulletDecEnabled = true;
             PlayerDmgDealer.Instance.canShoot = true;
+            PlayerDmgDealer.Instance.ForceStopShooting();
             GameScreenController.ShowGameScreen();
+            
+            if(sceneName.Equals("Tutorial"))
+                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.tutorialStartPosition);
+            else
+                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.gameStartPosition);
         });
     }
     
