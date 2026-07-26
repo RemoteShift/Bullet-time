@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody), typeof(GroundCheck))]
 public class LocomotionController : Singleton<LocomotionController>
@@ -15,6 +16,15 @@ public class LocomotionController : Singleton<LocomotionController>
     
     public InputHandler input => InputHandler.Instance;
 
+    [Header("Locomotion SFX")]
+    public AudioClip dashSFX;
+    public AudioClip midairSFX;
+    public AudioClip quietSlamSFX;
+    public AudioClip slamSFX;
+    public AudioClip slideStartSFX;
+    public AudioClip slideMidSFX;
+    public AudioClip slideEndSFX;
+
     #region Movement Settings
 
     [Header("Movement Settings")]
@@ -28,8 +38,8 @@ public class LocomotionController : Singleton<LocomotionController>
     public float slideSpeed = 1.5f;
     public float AirAcc = 0.1f;
     public float slamSpeed = 1.5f;
-    [Tooltip("The minimum time in seconds that the player must be in the air before a slam attack can deal damage.")]
-    public float slamAttackThreshhold = 0.5f;
+    [FormerlySerializedAs("slamAttackThreshhold")] [Tooltip("The minimum time in seconds that the player must be in the air before a slam attack can deal damage.")]
+    public float slamAttackThreshold = 0.5f;
 
     #endregion
 
@@ -48,6 +58,7 @@ public class LocomotionController : Singleton<LocomotionController>
 
     private void Start()
     {
+        AudioManager.Instance.sfxVolume = 0f;
         ReturnToDefaultState();
     }
 

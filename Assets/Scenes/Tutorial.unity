@@ -30074,6 +30074,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial Scene Transition
       objectReference: {fileID: 0}
+    - target: {fileID: 4469752788096606300, guid: 48bc6bded5fde1a418589917d543069d, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ba3a5182490ea94c81452af6058736d, type: 3}
+    - target: {fileID: 4469752788096606300, guid: 48bc6bded5fde1a418589917d543069d, type: 3}
+      propertyPath: noise
+      value: 
+      objectReference: {fileID: 8300000, guid: ac355060f21d82c42b5cbd251cbe927c, type: 3}
+    - target: {fileID: 4469752788096606300, guid: 48bc6bded5fde1a418589917d543069d, type: 3}
+      propertyPath: isRound
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

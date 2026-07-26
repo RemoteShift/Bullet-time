@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 430514097}
   - component: {fileID: 430514094}
   - component: {fileID: 430514102}
+  - component: {fileID: 430514103}
   - component: {fileID: 430514096}
   - component: {fileID: 430514095}
   m_Layer: 9
@@ -1031,6 +1032,13 @@ MonoBehaviour:
   currentStateName: GroundedState
   rb: {fileID: 430514096}
   GroundCheck: {fileID: 430514098}
+  dashSFX: {fileID: 8300000, guid: 448a164afd4f0754fa940c7e2b04c9e4, type: 3}
+  midairSFX: {fileID: 8300000, guid: dc28260fc5cdaf349ba9b44132c337f3, type: 3}
+  quietSlamSFX: {fileID: 8300000, guid: 20a6faa11701bcc4583a914ae0fb836d, type: 3}
+  slamSFX: {fileID: 8300000, guid: fa67ce5111148594f953221745368ed3, type: 3}
+  slideStartSFX: {fileID: 8300000, guid: 57fee0b3601da8a4a874630a19ff6a19, type: 3}
+  slideMidSFX: {fileID: 8300000, guid: c5af12d5298d3d5408db4d87530d513d, type: 3}
+  slideEndSFX: {fileID: 8300000, guid: 9d503a0c79c72674181e91e89b1424a3, type: 3}
   moveSpeed: 7
   jumpSpeed: 7
   dashSpeed: 25
@@ -1040,7 +1048,7 @@ MonoBehaviour:
   slideSpeed: 15
   AirAcc: 50
   slamSpeed: 40
-  slamAttackThreshhold: 0.1
+  slamAttackThreshold: 0.1
   canMove: 0
   OnDashCountChanged:
     m_PersistentCalls:
@@ -1134,6 +1142,26 @@ MonoBehaviour:
   tutorialStartRotation: {x: 0, y: 90, z: 0}
   gameStartRotation: {x: 0, y: 90, z: 0}
   shopStartRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &430514103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430514092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066910bb7a1478c4d90a8bb06682fa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  musicSource: {fileID: 0}
+  noiseSource: {fileID: 0}
+  globalSfxSource: {fileID: 0}
+  loopingSfxSource: {fileID: 0}
+  masterVolume: 1
+  musicVolume: 0.3
+  noiseVolume: 0.2
+  sfxVolume: 0.2
 --- !u!1 &627382958
 GameObject:
   m_ObjectHideFlags: 0

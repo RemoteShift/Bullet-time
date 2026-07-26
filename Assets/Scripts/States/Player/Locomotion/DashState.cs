@@ -13,7 +13,8 @@ public class DashState : PlayerLocomState
     public override void Enter()
     {
         base.Enter();
-
+        AudioManager.Instance.PlayGlobalSFX(player.dashSFX, 0.6f);
+        
         _dashDir = GetMoveDirection();
         _dashTimer = player.dashDuration;
         _initialVelocity = Rb.linearVelocity;

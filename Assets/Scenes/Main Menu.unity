@@ -240,6 +240,7 @@ MonoBehaviour:
   titleObject: {fileID: 1390870138}
   playButton: {fileID: 81855506}
   quitButton: {fileID: 293268065}
+  mainMenuMusic: {fileID: 8300000, guid: 4ba3a5182490ea94c81452af6058736d, type: 3}
 --- !u!1 &81855506
 GameObject:
   m_ObjectHideFlags: 0

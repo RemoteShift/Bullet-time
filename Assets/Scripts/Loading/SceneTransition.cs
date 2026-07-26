@@ -17,7 +17,15 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] protected int nextBulletCap;
     [SerializeField] protected bool isStage;
     [SerializeField] protected bool isRound;
-
+    [SerializeField] protected AudioClip music;
+    [SerializeField] protected AudioClip noise;
+    
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic(music);
+        AudioManager.Instance.PlayNoise(noise);
+    }
+    
     private void Update()
     {
         if (enemiesTransform)

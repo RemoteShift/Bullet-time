@@ -7,9 +7,13 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject titleObject;
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject quitButton;
-
+    [SerializeField] private AudioClip mainMenuMusic;
+    
+    
     private void Start()
     {
+        AudioManager.Instance.PlayMusic(mainMenuMusic);
+        
         titleObject.transform.localScale = Vector3.zero;
         titleObject.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce);
         
@@ -28,9 +32,11 @@ public class MainMenuController : MonoBehaviour
     public void Play()
     {
         var sceneName = PlayerData.Instance.isTutorialCompleted ? "Game" : "Tutorial";
+
         
         LoadingManager.Instance.LoadScene(sceneName, onComplete: () =>
         {
+            AudioManager.Instance.sfxVolume = 0.2f;
             LoseScreenController.Instance.currentStageSceneName = sceneName;
             CameraLook.Instance.LockCursor();
             PlayerData.Instance.ClearAll();

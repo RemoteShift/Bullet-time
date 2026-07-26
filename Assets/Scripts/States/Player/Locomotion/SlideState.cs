@@ -11,6 +11,9 @@ public class SlideState : PlayerLocomState
     {
         base.Enter();
 
+        AudioManager.Instance.PlayGlobalSFX(player.slideStartSFX);
+        AudioManager.Instance.PlayGlobalSFX(player.slideMidSFX, loop: true);
+        
         player.SetSlideHeight();
         _slideDir = GetMoveDirection();
     }
@@ -50,6 +53,8 @@ public class SlideState : PlayerLocomState
 
     public override void Exit()
     {
+        AudioManager.Instance.StopGlobalSFX();
+        AudioManager.Instance.PlayGlobalSFX(player.slideEndSFX);
         base.Exit();
         player.SetStandingHeight();
     }

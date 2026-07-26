@@ -4,6 +4,18 @@ public class AirborneState : PlayerLocomState
 {
     public AirborneState(LocomotionController locomotionController, Rigidbody rb) : base(locomotionController, rb) { }
 
+    public override void Enter()
+    {
+        base.Enter();
+        AudioManager.Instance.PlayGlobalSFX(player.midairSFX, 0.3f, loop: true);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        AudioManager.Instance.StopGlobalSFX();
+    }
+
     public override void Update()
     {
         base.Update();

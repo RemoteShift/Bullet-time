@@ -9,6 +9,7 @@ public class GroundSlamState : PlayerLocomState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlayGlobalSFX(player.midairSFX, loop: true);
         _startTime = Time.time;
         Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), true);
     }
@@ -19,8 +20,13 @@ public class GroundSlamState : PlayerLocomState
         
         if (player.GroundCheck.IsGrounded)
         {
-            if(PlayerData.Instance.isGroundSlamAttack)
+            if (PlayerData.Instance.isGroundSlamAttack)
+            {
                 OnSlamImpact();
+                AudioManager.Instance.PlayGlobalSFX(player.slamSFX);
+            }
+            else
+                AudioManager.Instance.PlayGlobalSFX(player.quietSlamSFX, 0.7f);
             player.SwitchState(new GroundedState(player, Rb));
             return;
         }
@@ -34,16 +40,17 @@ public class GroundSlamState : PlayerLocomState
 
     public override void Exit()
     {
+        AudioManager.Instance.StopGlobalSFX();
         Physics.IgnoreLayerCollision(player.gameObject.layer, LayerMask.NameToLayer("Damageable"), false);
     }
     
     private void OnSlamImpact()
     {
-        if (!(Time.time - _startTime > player.slamAttackThreshhold))
+        if (!(Time.time - _startTime > player.slamAttackThreshold))
         {
             return;
         }
-
+        
         // player.PlaySlamImpactEffects();
         PlayerDmgDealer.Instance.DealSlamDamage();
     }
