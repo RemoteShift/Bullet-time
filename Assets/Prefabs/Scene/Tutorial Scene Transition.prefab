@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8234131670819734693
+--- !u!1 &3609521355564889351
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8599232441807398255}
-  - component: {fileID: 356683302201342341}
-  - component: {fileID: 1653325881956802061}
-  - component: {fileID: 6781374583899588630}
-  - component: {fileID: 4024133943491569910}
+  - component: {fileID: 2178803924780837446}
+  - component: {fileID: 4437390661291824243}
+  - component: {fileID: 3782335960866015639}
+  - component: {fileID: 5994274958825913226}
+  - component: {fileID: 4469752788096606300}
   m_Layer: 0
-  m_Name: Scene Transition
+  m_Name: Tutorial Scene Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8599232441807398255
+--- !u!4 &2178803924780837446
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8234131670819734693}
+  m_GameObject: {fileID: 3609521355564889351}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 124.0238, y: 2, z: 2.0408}
@@ -35,21 +35,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &356683302201342341
+--- !u!33 &4437390661291824243
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8234131670819734693}
+  m_GameObject: {fileID: 3609521355564889351}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1653325881956802061
+--- !u!23 &3782335960866015639
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8234131670819734693}
+  m_GameObject: {fileID: 3609521355564889351}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6781374583899588630
+--- !u!65 &5994274958825913226
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8234131670819734693}
+  m_GameObject: {fileID: 3609521355564889351}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,23 +113,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4024133943491569910
+--- !u!114 &4469752788096606300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8234131670819734693}
+  m_GameObject: {fileID: 3609521355564889351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d43228c0f327d5419d7858cf2c5808d, type: 3}
+  m_Script: {fileID: 11500000, guid: be6116e6ff14b0542b421abe9047ba5b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneTransition
+  m_EditorClassIdentifier: Assembly-CSharp::TransitionFromTutorial
   lockedColor: {r: 0.12156863, g: 0.12156863, b: 0.12156863, a: 1}
   unlockedColor: {r: 0.19215687, g: 1, b: 0.043137256, a: 0.5254902}
   panelMaterial: {fileID: 2100000, guid: 2827c33cf1a4fcb45b8b87ab4e87e0d0, type: 2}
   enemiesTransform: {fileID: 0}
-  nextSceneName: 
-  nextBulletCap: 0
-  isStage: 0
+  nextSceneName: Game
+  nextBulletCap: 50
+  isStage: 1
   isRound: 0

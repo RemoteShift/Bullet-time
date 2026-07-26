@@ -35,8 +35,8 @@ public class MainMenuController : MonoBehaviour
             CameraLook.Instance.LockCursor();
             PlayerData.Instance.ClearAll();
             BulletManager.Instance.InitializeNextStage(BulletManager.Instance.currentBulletCap);
-            BulletManager.Instance.bulletDecEnabled = true;
-            PlayerDmgDealer.Instance.canShoot = true;
+            BulletManager.Instance.bulletDecEnabled = !sceneName.Equals("Tutorial");
+            PlayerDmgDealer.Instance.canShoot = !sceneName.Equals("Tutorial");
             PlayerDmgDealer.Instance.ForceStopShooting();
             LocomotionController.Instance.canMove = true;
             GameScreenController.ShowGameScreen();

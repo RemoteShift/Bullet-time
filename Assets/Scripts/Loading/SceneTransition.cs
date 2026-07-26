@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SceneTransition : MonoBehaviour
@@ -38,7 +39,29 @@ public class SceneTransition : MonoBehaviour
 
             if (isRound)
             {
-                // send to shop the new scene and the on complete action
+                Action onComplete = () =>
+                {
+                    CameraLook.Instance.LockCursor();
+                    PlayerDmgDealer.Instance.canShoot = true;
+                    PlayerDmgDealer.Instance.ForceStopShooting();
+                
+                    LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.GetScenePosition(nextSceneName), 
+                        PlayerData.Instance.GetSceneRotation(nextSceneName));
+                    //
+                    BulletManager.Instance.InitializeNextRound();
+                };
+                
+                ShopTransitionHandler.Instance.Initialize(nextSceneName, nextBulletCap, onComplete);
+                
+                BulletManager.Instance.bulletDecEnabled = false;
+                PlayerDmgDealer.Instance.ForceStopShooting();
+                PlayerDmgDealer.Instance.canShoot = false;
+                LoadingManager.Instance.LoadScene("Shop", onComplete: () =>
+                {
+                    LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.GetScenePosition("Shop"), 
+                        PlayerData.Instance.GetSceneRotation("Shop"));
+                });
+                return;
             }
             
             LoadingManager.Instance.LoadScene(nextSceneName, onComplete: () => 
@@ -55,11 +78,8 @@ public class SceneTransition : MonoBehaviour
                     LoseScreenController.Instance.currentStageSceneName = nextSceneName;
                     PlayerData.Instance.ClearNonPersistents();
                     BulletManager.Instance.InitializeNextStage(nextBulletCap);
+                    BulletManager.Instance.bulletDecEnabled = true;
                 } 
-                if (isRound)
-                {
-                    BulletManager.Instance.InitializeNextRound();
-                }
             });
         }
     }

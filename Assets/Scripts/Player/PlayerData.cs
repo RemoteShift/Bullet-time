@@ -32,6 +32,7 @@ public class PlayerData : Singleton<PlayerData>
     [Header("Scene Start Positions")]
     [SerializeField] private Vector3 tutorialStartPosition;
     [SerializeField] private Vector3 gameStartPosition;
+    [SerializeField] private Vector3 shopStartPosition;
 
     #endregion
 
@@ -40,6 +41,7 @@ public class PlayerData : Singleton<PlayerData>
     [Header("Scene Start Rotations")]
     [SerializeField] private Vector3 tutorialStartRotation;
     [SerializeField] private Vector3 gameStartRotation;
+    [SerializeField] private Vector3 shopStartRotation;
 
     #endregion
     
@@ -95,6 +97,8 @@ public class PlayerData : Singleton<PlayerData>
                 return tutorialStartPosition;
             case "Game":
                 return gameStartPosition;
+            case "Shop":
+                return shopStartPosition;
             default:
                 Debug.LogWarning($"Unknown scene name: {sceneName}. Returning Vector3.zero.");
                 return Vector3.zero;
@@ -109,6 +113,8 @@ public class PlayerData : Singleton<PlayerData>
                 return tutorialStartRotation;
             case "Game":
                 return gameStartRotation;
+            case "Shop":
+                return shopStartRotation;
             default:
                 Debug.LogWarning($"Unknown scene name: {sceneName}. Returning Vector3.zero.");
                 return Vector3.zero;
