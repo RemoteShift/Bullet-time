@@ -9,7 +9,10 @@ public class Test : MonoBehaviour
             BulletManager.Instance.bulletDecEnabled = false;
             PlayerDmgDealer.Instance.ForceStopShooting();
             PlayerDmgDealer.Instance.canShoot = false;
-            LoadingManager.Instance.LoadScene("Shop");
+            LoadingManager.Instance.LoadScene("Shop", onComplete: () =>
+            {
+                
+            });
         }
     }
 }

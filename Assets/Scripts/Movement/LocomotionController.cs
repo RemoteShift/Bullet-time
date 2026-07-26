@@ -74,20 +74,29 @@ public class LocomotionController : Singleton<LocomotionController>
             currentState?.FixedUpdate();
     }
 
-    public void ResetPositionRotation(Vector3 startPosition)
+    public void ResetPositionRotation(Vector3 startPosition, Quaternion startRotation)
     {
-        rb.position = startPosition;
-        rb.rotation = Quaternion.identity;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.Sleep();
-
-        transform.SetPositionAndRotation(startPosition, Quaternion.identity);
         
-        CameraLook.Instance.transform.localRotation = Quaternion.identity;
+        rb.position = startPosition;
+        rb.rotation = startRotation;
+        transform.SetPositionAndRotation(startPosition, startRotation);
+        
+        Physics.SyncTransforms();
+        rb.Sleep();
+        
+        var euler = startRotation.eulerAngles;
+            
+        CameraLook.Instance.ResetRotation(targetYaw: euler.y, targetPitch: euler.x);
 
         GroundCheck.SetGroundedState(true);
         ReturnToDefaultState();
+    }
+    
+    public void ResetPositionRotation(Vector3 startPosition, Vector3 startEulerAngles)
+    {
+        ResetPositionRotation(startPosition, Quaternion.Euler(startEulerAngles));
     }
 
     public void Jump()

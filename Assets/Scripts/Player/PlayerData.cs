@@ -34,6 +34,14 @@ public class PlayerData : Singleton<PlayerData>
     public Vector3 gameStartPosition;
 
     #endregion
+
+    #region Scene Start Rotations
+
+    [Header("Scene Start Rotations")]
+    public Vector3 tutorialStartRotation;
+    public Vector3 gameStartRotation;
+
+    #endregion
     
     public bool TryBuyItem(ShopItemSO item)
     {

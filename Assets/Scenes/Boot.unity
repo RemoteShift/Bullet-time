@@ -1041,6 +1041,7 @@ MonoBehaviour:
   AirAcc: 50
   slamSpeed: 40
   slamAttackThreshhold: 0.1
+  canMove: 0
   OnDashCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1129,6 +1130,8 @@ MonoBehaviour:
   finishedTutorial: 0
   tutorialStartPosition: {x: -14, y: 5, z: 2}
   gameStartPosition: {x: 0, y: 1, z: 0}
+  tutorialStartRotation: {x: 0, y: 90, z: 0}
+  gameStartRotation: {x: 0, y: 90, z: 0}
 --- !u!1 &627382958
 GameObject:
   m_ObjectHideFlags: 0

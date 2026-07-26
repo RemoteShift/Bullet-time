@@ -42,6 +42,20 @@ public class CameraLook : Singleton<CameraLook>
         Cursor.visible = false;
         canLook = true;
     }
+    
+    public void ResetRotation(float targetYaw = 0f, float targetPitch = 0f)
+    {
+        yaw = targetYaw;
+        pitch = targetPitch;
+        
+        lookInput = Vector2.zero;
+        
+        if (yawPivot)
+            yawPivot.localRotation = Quaternion.Euler(0f, yaw, 0f);
+        
+        if (pitchPivot)
+            pitchPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+    }
 
     // Update your handler signature to accept a device flag (or check InputSystem directly)
     private void HandleLookInput(Vector2 input, bool isGamepad)

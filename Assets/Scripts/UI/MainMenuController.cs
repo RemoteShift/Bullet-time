@@ -41,9 +41,11 @@ public class MainMenuController : MonoBehaviour
             GameScreenController.ShowGameScreen();
             
             if(sceneName.Equals("Tutorial"))
-                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.tutorialStartPosition);
+                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.tutorialStartPosition, 
+                    PlayerData.Instance.tutorialStartRotation);
             else
-                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.gameStartPosition);
+                LocomotionController.Instance.ResetPositionRotation(PlayerData.Instance.gameStartPosition, 
+                    PlayerData.Instance.gameStartRotation);
         });
     }
     
