@@ -20,7 +20,7 @@ public class SlideState : PlayerLocomState
         base.Update();
         
         
-        if(player.input.JumpPressed)
+        if(player.input.JumpPressed && player.GroundCheck.IsGrounded)
         {
             if (Camera.main)
             {
