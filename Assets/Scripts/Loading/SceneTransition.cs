@@ -20,7 +20,7 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] protected AudioClip music;
     [SerializeField] protected AudioClip noise;
     
-    private void Start()
+    protected virtual void Start()
     {
         AudioManager.Instance.PlayMusic(music);
         AudioManager.Instance.PlayNoise(noise);

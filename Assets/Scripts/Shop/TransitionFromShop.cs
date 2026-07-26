@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class TransitionFromShop : SceneTransition
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         nextSceneName = ShopTransitionHandler.Instance.sceneName;
         nextBulletCap = ShopTransitionHandler.Instance.nextBulletCap;
     }
