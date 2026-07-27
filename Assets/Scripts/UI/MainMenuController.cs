@@ -31,7 +31,7 @@ public class MainMenuController : MonoBehaviour
 
     public void Play()
     {
-        var sceneName = PlayerData.Instance.isTutorialCompleted ? "Game" : "Tutorial";
+        var sceneName = PlayerData.Instance.isTutorialCompleted ? "Stage 1 - Combat" : "Tutorial";
 
         
         LoadingManager.Instance.LoadScene(sceneName, onComplete: () =>

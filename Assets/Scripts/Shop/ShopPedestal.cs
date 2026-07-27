@@ -72,9 +72,18 @@ public class ShopPedestal : MonoBehaviour
             buySeq.Append(_spawnedDisplayModel.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack));
         }
         
-        pedestalHighlight.SetActive(false);
+        if (pedestalHighlight)
+        {
+            pedestalHighlight.SetActive(false);
+        }
         
-        buySeq.OnComplete(() => Destroy(itemDisplayPoint.gameObject));
+        buySeq.OnComplete(() => 
+        {
+            if (itemDisplayPoint)
+            {
+                Destroy(itemDisplayPoint.gameObject);
+            }
+        });
     }
 
     private void AnimateFail()

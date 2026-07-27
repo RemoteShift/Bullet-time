@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  m_BakeOnSceneLoad: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 93e4614fe51ebd442a5b0735b20ba67d, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: f8523518c9403a563a98ff8ddd7a9582, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -4030,7 +4030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4024133943491569910, guid: 3d1961da05eefec47a47e4b3c6334967, type: 3}
       propertyPath: nextBulletCap
-      value: 60
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4024133943491569910, guid: 3d1961da05eefec47a47e4b3c6334967, type: 3}
       propertyPath: nextSceneName
@@ -8148,6 +8148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spotlight (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4541042490413456412, guid: ab76468ef79550045b53944dd456d47c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4982287452619091878, guid: ab76468ef79550045b53944dd456d47c, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -8315,7 +8319,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

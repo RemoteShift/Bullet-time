@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class TransitionFromTutorial : SceneTransition
 {
+    protected override void Start()
+    {
+        base.Start();
+        BulletManager.Instance.bulletDecEnabled = false;
+    }
+
     public override void OnCollisionEnter(Collision other)
     {
         base.OnCollisionEnter(other);

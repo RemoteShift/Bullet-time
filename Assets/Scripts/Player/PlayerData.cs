@@ -77,7 +77,7 @@ public class PlayerData : Singleton<PlayerData>
 
     public void ClearNonPersistents()
     {
-        foreach (var itemID in _unlockedItemIDs)
+        foreach (var itemID in new List<string>(_unlockedItemIDs))
         {
             if(itemID.Equals("shotgun")) continue; // Keep shotgun unlocked
             UnapplyPurchasedItem(itemID);

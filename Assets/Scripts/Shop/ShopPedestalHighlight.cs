@@ -7,18 +7,35 @@ public class ShopPedestalHighlight : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        interactCanvas.enabled = true;
-        InputHandler.Instance.OnInteractInput += HandleInteract;
+        if (interactCanvas) interactCanvas.enabled = true;
+        if (InputHandler.Instance)
+        {
+            InputHandler.Instance.OnInteractInput += HandleInteract;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        interactCanvas.enabled = false;
-        InputHandler.Instance.OnInteractInput -= HandleInteract;
+        if (interactCanvas) interactCanvas.enabled = false;
+        if (InputHandler.Instance)
+        {
+            InputHandler.Instance.OnInteractInput -= HandleInteract;
+        }
     }
 
     private void HandleInteract()
     {
-        shopPedestal.InteractWithPedestal();
+        if (shopPedestal)
+        {
+            shopPedestal.InteractWithPedestal();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (InputHandler.Instance)
+        {
+            InputHandler.Instance.OnInteractInput -= HandleInteract;
+        }
     }
 }

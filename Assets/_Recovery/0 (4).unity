@@ -1143,13 +1143,13 @@ MonoBehaviour:
   shopStartPosition: {x: 0, y: 1, z: -8.5}
   stage1Round2Position: {x: -32, y: 1, z: 2}
   stage2Round1Position: {x: 60, y: 5, z: 2}
-  stage2Round2Position: {x: -30, y: 1, z: 6}
+  stage2Round2Position: {x: 80, y: 1, z: 6}
   tutorialStartRotation: {x: 0, y: 90, z: 0}
   gameStartRotation: {x: 0, y: 90, z: 0}
   shopStartRotation: {x: 0, y: 0, z: 0}
   stage1Round2Rotation: {x: 0, y: 90, z: 0}
   stage2Round1Rotation: {x: 0, y: -90, z: 0}
-  stage2Round2Rotation: {x: 0, y: 90, z: 0}
+  stage2Round2Rotation: {x: 0, y: -90, z: 0}
 --- !u!114 &430514103
 MonoBehaviour:
   m_ObjectHideFlags: 0
